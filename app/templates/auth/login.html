@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field %}
+{% block title %}Admin Login | Dynamic Academy{% endblock %}
+{% block content %}
+<section class="section" style="padding-top: var(--space-3xl); min-height: 70vh; display:flex; align-items:center;">
+  <div class="container" style="max-width: 420px;">
+    <div class="form-card">
+      <div style="text-align:center; margin-bottom: var(--space-md);">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Dynamic Academy logo" class="brand-mark-img" style="margin-inline:auto; width:52px; height:52px;>
+        <h1 style="margin-top: var(--space-sm); font-size: var(--text-xl); text-align:center;">Admin Login</h1>
+        <p class="text-faint" style="font-size: var(--text-sm);">Dynamic Academy Dashboard</p>
+      </div>
+      <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        {{ field(form.email, autocomplete="email") }}
+        {{ field(form.password, autocomplete="current-password") }}
+        <div class="checkbox-field" style="margin-bottom: var(--space-md);">
+          {{ form.remember() }}
+          <label for="{{ form.remember.id }}">{{ form.remember.label.text }}</label>
+        </div>
+        {{ form.submit(class_="btn btn-primary btn-block") }}
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

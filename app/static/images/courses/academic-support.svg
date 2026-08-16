@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Academic Support placeholder graphic">
+  <defs>
+    <linearGradient id="g1099044342" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#162a66" />
+      <stop offset="100%" stop-color="#4a72e0" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g1099044342)" />
+  <circle cx="378" cy="447" r="58" fill="white" opacity="0.05" /><circle cx="379" cy="447" r="59" fill="white" opacity="0.05" /><circle cx="380" cy="447" r="60" fill="white" opacity="0.05" /><circle cx="381" cy="447" r="61" fill="white" opacity="0.05" />
+  <circle cx="400.0" cy="230.0" r="46" fill="white" opacity="0.12" />
+  <circle cx="400.0" cy="230.0" r="30" fill="white" opacity="0.18" />
+  <path d="M386.0 230.0 l14 -14 l14 14 l-14 14 z" fill="white" opacity="0.9" />
+  <text x="400.0" y="454" text-anchor="middle" font-family="Georgia, serif" font-size="26" font-weight="700" fill="white" opacity="0.95">Academic Support</text>
+  <text x="400.0" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" opacity="0.6">Dynamic Academy — placeholder image</text>
+</svg>

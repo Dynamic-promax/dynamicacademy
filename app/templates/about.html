@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}About Us | Dynamic Academy{% endblock %}
+{% block description %}Learn about Dynamic Academy's mission, vision and core values — a modern education and technology academy in Abuja, Nigeria.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow on-dark">About Dynamic Academy</span>
+    <h1>A serious academy built for how learners grow today.</h1>
+    <p>Dynamic Academy provides practical academic, technology and digital-skills education for children, teenagers and adults — online and in person in Abuja, Nigeria.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head centered">
+      <span class="eyebrow">Our Focus</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Helping learners build skills for a changing world.</h2>
+    </div>
+    <div class="chip-list" style="justify-content:center;">
+      {% for item in ["Academic excellence","Digital literacy","Programming skills","Artificial intelligence skills","Creativity","Problem solving","Future-ready skills"] %}
+        <span class="chip">{{ item }}</span>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container grid grid-2">
+    <div class="value-card reveal">
+      <span class="feature-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+      <h3 style="margin-top: var(--space-sm);">Our Mission</h3>
+      <p>To equip learners with academic excellence and future-ready digital skills through practical, project-based education — accessible both online and in person.</p>
+    </div>
+    <div class="value-card reveal">
+      <span class="feature-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+      <h3 style="margin-top: var(--space-sm);">Our Vision</h3>
+      <p>To be a leading education and technology academy shaping confident, capable learners across Nigeria and beyond.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head centered">
+      <span class="eyebrow">What Drives Us</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Our Core Values</h2>
+    </div>
+    <div class="grid grid-4">
+      {% for v, d in [("Excellence","We hold ourselves to a high standard in everything we teach."), ("Innovation","We embrace new tools, technology and teaching methods."), ("Integrity","We act honestly and transparently with every learner and family."), ("Creativity","We nurture original thinking and creative problem-solving."), ("Growth","We believe every learner can grow with the right support.")] %}
+        <div class="value-card reveal"><h3>{{ v }}</h3><p>{{ d }}</p></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <h2 class="section-heading">Discover our programmes</h2>
+      <p>Explore courses built around academic excellence and future-ready digital skills.</p>
+      <div class="cta-actions">
+        <a href="{{ url_for('courses.course_list') }}" class="btn btn-gold">Explore Courses</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

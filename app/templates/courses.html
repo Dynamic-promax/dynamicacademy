@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Courses | Dynamic Academy{% endblock %}
+{% block description %}Explore Dynamic Academy's full course catalogue — technology, academic support, examination preparation and languages — for kids, teens and adults.{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow on-dark">Course Catalogue</span>
+    <h1>Courses built for technology, academics and future-ready skills.</h1>
+    <p>Browse programming, AI, academic support, examination preparation and language courses.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="filter-row">
+      <a href="{{ url_for('courses.course_list') }}" class="filter-pill {{ 'is-active' if active_category == 'all' }}">All Courses</a>
+      {% for slug, name in categories %}
+        <a href="{{ url_for('courses.course_list', category=slug) }}" class="filter-pill {{ 'is-active' if active_category == slug }}">{{ name }}</a>
+      {% endfor %}
+    </div>
+
+    <div class="grid grid-3" style="margin-top: var(--space-xl);">
+      {% for course in courses %}
+        <div class="reveal">{% include "partials/course_card.html" %}</div>
+      {% else %}
+        <p class="empty-state">No courses found in this category yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <h2 class="section-heading">Not sure which course is right?</h2>
+      <p>Chat with our team on WhatsApp and we'll help you choose the best fit.</p>
+      <div class="cta-actions">
+        <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.general) }}" class="btn btn-whatsapp" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

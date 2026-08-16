@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Tutors | Dynamic Academy{% endblock %}
+{% block description %}Meet Dynamic Academy's approach to tutors, and apply to join our teaching team in Abuja.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow on-dark">Our Tutors</span>
+    <h1>Taught by people who care about real progress.</h1>
+    <p>Dynamic Academy instructors bring practical experience and a genuine passion for teaching to every class — combining subject expertise with patience for learners at every level.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">
+      <div class="value-card reveal"><h3>Qualified &amp; Vetted</h3><p>Every tutor application is reviewed before joining our teaching team.</p></div>
+      <div class="value-card reveal"><h3>Subject Specialists</h3><p>Tutors matched to learners based on subject, course and age group.</p></div>
+      <div class="value-card reveal"><h3>Ongoing Support</h3><p>Tutors are supported with structured curricula and resources.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <span class="eyebrow on-dark">Join Our Team</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Interested in teaching with Dynamic Academy?</h2>
+      <p>We're always looking for passionate, qualified tutors across technology and academic subjects.</p>
+      <div class="cta-actions">
+        <a href="{{ url_for('tutor.tutor_application') }}" class="btn btn-gold">Apply as Tutor</a>
+        <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.tutor) }}" class="btn btn-whatsapp" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

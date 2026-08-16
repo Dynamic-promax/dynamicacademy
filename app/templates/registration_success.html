@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Registration Successful | Dynamic Academy{% endblock %}
+{% block content %}
+<section class="section" style="padding-top: var(--space-3xl);">
+  <div class="container" style="max-width: 560px; text-align:center;">
+    <span data-confetti style="display:inline-flex; align-items:center; justify-content:center; width:72px; height:72px; border-radius:50%; background: var(--color-success-bg); color: var(--color-success); margin-bottom: var(--space-md);">
+      <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+    </span>
+
+    {% if kind == "student" %}
+      <h1 style="text-align:center;">Registration Successful!</h1>
+      <p class="lead-text" style="margin-top: var(--space-sm);">Welcome to Dynamic Academy. Your registration has been received.</p>
+    {% elif kind == "parent" %}
+      <h1 style="text-align:center;">Registration Received</h1>
+      <p class="lead-text" style="margin-top: var(--space-sm);">Thank you for registering your child with Dynamic Academy.</p>
+    {% elif kind == "tutor" %}
+      <h1 style="text-align:center;">Application Submitted Successfully</h1>
+      <p class="lead-text" style="margin-top: var(--space-sm);">Thank you for your interest in teaching with Dynamic Academy. Our team will review your application.</p>
+    {% endif %}
+
+    {% if ref %}
+    <div class="value-card" style="margin-top: var(--space-lg); text-align:center;">
+      <p class="text-faint" style="font-size: var(--text-xs); text-transform:uppercase; letter-spacing:0.05em;">
+        {{ "Application Number" if kind == "tutor" else "Registration Number" }}
+      </p>
+      <p style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight:700; color: var(--color-navy-900); margin-top:0.25rem;">{{ ref }}</p>
+      <p class="text-faint" style="font-size: var(--text-xs); margin-top:0.5rem;">Please save this number for your records.</p>
+    </div>
+    {% endif %}
+
+    <div class="btn-group" style="justify-content:center; margin-top: var(--space-xl);">
+      <a href="{{ url_for('courses.course_list') }}" class="btn btn-outline">View Courses</a>
+      <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.general) }}" class="btn btn-whatsapp" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      <a href="{{ url_for('main.home') }}" class="btn btn-primary">Home</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

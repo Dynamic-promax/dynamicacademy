@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Blog & News | Dynamic Academy{% endblock %}
+{% block description %}Insights on AI, coding, education, parenting and digital skills from the Dynamic Academy team.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow on-dark">Blog &amp; News</span>
+    <h1>Insights on education, technology and future-ready skills.</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">
+      {% for post in posts %}
+      <a href="{{ url_for('main.blog_detail', slug=post.slug) }}" class="card reveal" style="display:flex; flex-direction:column; height:100%;">
+        <div class="course-card-media"><img src="{{ url_for('static', filename='images/' ~ post.image) }}" alt="{{ post.title }}" loading="lazy" width="800" height="500"></div>
+        <div class="course-card-body">
+          <span class="badge badge-royal">{{ post.category }}</span>
+          <h3>{{ post.title }}</h3>
+          <p class="course-card-desc">{{ post.excerpt }}</p>
+          <p class="text-faint" style="font-size: var(--text-xs); margin-top: var(--space-sm); border-top:1px solid var(--color-border); padding-top:var(--space-sm);">{{ post.author }} &middot; {{ post.created_at.strftime('%d %b %Y') }}</p>
+        </div>
+      </a>
+      {% else %}
+      <p class="empty-state">No articles published yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

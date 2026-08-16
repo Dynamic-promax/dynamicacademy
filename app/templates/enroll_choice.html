@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Enroll in {{ course.title }} | Dynamic Academy{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow on-dark">Enroll Now</span>
+    <h1>Enrolling in {{ course.title }}</h1>
+    <p>Tell us who's registering, and we'll take you to the right form with this course already selected.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width: 760px;">
+    <div class="grid grid-2">
+      <a href="{{ url_for('registration.student_register', course=course.slug) }}" class="value-card reveal" style="text-align:center;">
+        <span class="feature-mini-icon" style="margin-inline:auto; width:56px; height:56px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></span>
+        <h3 style="margin-top: var(--space-sm);">I am a Student</h3>
+        <p>Register yourself directly for this course.</p>
+        <span class="btn btn-primary btn-sm" style="margin-top: var(--space-sm);">Continue as Student</span>
+      </a>
+      <a href="{{ url_for('registration.parent_register', course=course.slug) }}" class="value-card reveal" style="text-align:center;">
+        <span class="feature-mini-icon" style="margin-inline:auto; width:56px; height:56px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <h3 style="margin-top: var(--space-sm);">I am a Parent/Guardian</h3>
+        <p>Register your child for this course.</p>
+        <span class="btn btn-primary btn-sm" style="margin-top: var(--space-sm);">Continue as Parent/Guardian</span>
+      </a>
+    </div>
+    <p style="text-align:center; margin-top: var(--space-lg);">
+      <a href="{{ url_for('courses.course_detail', slug=course.slug) }}" class="btn-ghost">&larr; Back to course details</a>
+    </p>
+  </div>
+</section>
+{% endblock %}

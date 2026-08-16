@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}For Kids & Teens | Dynamic Academy{% endblock %}
+{% block description %}Technology and academic programmes for children and teenagers — Python, Scratch, AI, robotics, web development and more. Coding for kids Abuja & Nigeria.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow on-dark">For Kids &amp; Teens</span>
+    <h1>Building Tomorrow's Creators Today.</h1>
+    <p>Dynamic Academy's children's technology programmes blend academics with hands-on technology skills — designed for how young learners actually learn best: by doing.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head centered">
+      <span class="eyebrow">Age Groups</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Programmes tailored by age and stage.</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="value-card reveal"><span style="font-family:var(--font-display); font-size:var(--text-2xl); font-weight:700; color:var(--color-royal-600);">10-12</span><p class="text-faint" style="font-size:var(--text-xs); text-transform:uppercase;">years</p><h3 style="margin-top:0.5rem;">Young Explorers</h3><p>Introductory, playful programmes building curiosity in technology.</p></div>
+      <div class="value-card reveal"><span style="font-family:var(--font-display); font-size:var(--text-2xl); font-weight:700; color:var(--color-royal-600);">13-15</span><p class="text-faint" style="font-size:var(--text-xs); text-transform:uppercase;">years</p><h3 style="margin-top:0.5rem;">Rising Builders</h3><p>Deeper technical skills — programming, web and creative digital tools.</p></div>
+      <div class="value-card reveal"><span style="font-family:var(--font-display); font-size:var(--text-2xl); font-weight:700; color:var(--color-royal-600);">16-18</span><p class="text-faint" style="font-size:var(--text-xs); text-transform:uppercase;">years</p><h3 style="margin-top:0.5rem;">Future Leaders</h3><p>Advanced, project- and career-oriented technology and academic programmes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container grid grid-2" style="align-items:center;">
+    <div class="reveal">
+      <span class="eyebrow">Learning by doing</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Every lesson ends with something real.</h2>
+      <p class="lead-text" style="margin-top: var(--space-sm);">Our children's programmes are built around hands-on projects — not passive lectures. Learners code, build, design and create from day one, developing real confidence with technology.</p>
+    </div>
+    <div class="chip-list reveal">
+      {% for p in ["Python","Scratch","Artificial Intelligence","Robotics","Web Development","Game Development","Digital Creativity","Microsoft Office"] %}
+        <span class="chip" style="font-size: var(--text-sm); padding: 0.6rem 1rem;">{{ p }}</span>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head centered">
+      <span class="eyebrow">Popular With Young Learners</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Courses for Kids &amp; Teens</h2>
+    </div>
+    <div class="grid grid-3">
+      {% for course in courses %}<div class="reveal">{% include "partials/course_card.html" %}</div>{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <h2 class="section-heading">Give your child a head start in technology.</h2>
+      <p>Enroll today — online or physical classes available in Abuja.</p>
+      <div class="cta-actions">
+        <a href="{{ url_for('registration.parent_register') }}" class="btn btn-gold">Register My Child</a>
+        <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.parent) }}" class="btn btn-whatsapp" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

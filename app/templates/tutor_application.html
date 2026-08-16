@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field, checkbox, section %}
+{% block title %}Tutor Application | Dynamic Academy{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow on-dark">Join Our Team</span>
+    <h1>Tutor Application</h1>
+    <p>Thank you for your interest in teaching with Dynamic Academy. Please complete the form below.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width: 760px;">
+    <form method="POST" enctype="multipart/form-data" class="form-card" data-enhance novalidate>
+      {{ form.hidden_tag() }}
+
+      {{ section("Personal Information") }}
+      <div class="grid-form-2">
+        {{ field(form.full_name, autocomplete="name") }}
+        {{ field(form.gender) }}
+      </div>
+      <div class="grid-form-2">
+        {{ field(form.email, autocomplete="email") }}
+        {{ field(form.phone, autocomplete="tel") }}
+      </div>
+      <div class="grid-form-2">
+        {{ field(form.whatsapp_number, hint="Optional, if different from your phone number.") }}
+        {{ field(form.location, placeholder="e.g. Abuja, Nigeria") }}
+      </div>
+
+      {{ section("Professional Information") }}
+      <div class="grid-form-2">
+        {{ field(form.highest_qualification) }}
+        {{ field(form.field_of_study) }}
+      </div>
+      <div class="grid-form-2">
+        {{ field(form.years_of_experience) }}
+        {{ field(form.preferred_mode) }}
+      </div>
+      {{ field(form.subjects_courses, placeholder="e.g. Python, Mathematics, WAEC Preparation") }}
+      <div class="grid-form-2">
+        {{ field(form.technology_skills) }}
+        {{ field(form.programming_languages) }}
+      </div>
+      {{ field(form.age_groups, placeholder="e.g. 10-15 years, Adults") }}
+      <div class="grid-form-2">
+        {{ field(form.availability, placeholder="e.g. Weekday evenings") }}
+        {{ field(form.expected_rate, placeholder="e.g. ₦5,000/hour") }}
+      </div>
+
+      {{ section("Experience") }}
+      {{ field(form.previous_institution) }}
+      {{ field(form.certifications) }}
+      <div class="grid-form-2">
+        {{ field(form.portfolio_url, placeholder="https://...") }}
+        {{ field(form.linkedin_url, placeholder="https://linkedin.com/in/...") }}
+      </div>
+
+      {{ section("Documents", "Only PDF or Word documents, up to 8MB. Your files are stored securely and are never made public.") }}
+      {{ field(form.cv_file) }}
+      {{ field(form.certificate_file) }}
+
+      {{ section("Consent") }}
+      {{ checkbox(form.confirm_accurate) }}
+      {{ checkbox(form.agree_terms) }}
+
+      {{ form.submit(class_="btn btn-primary btn-block") }}
+    </form>
+  </div>
+</section>
+{% endblock %}

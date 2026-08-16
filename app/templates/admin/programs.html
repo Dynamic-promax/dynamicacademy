@@ -1,0 +1,36 @@
+{% extends "admin/_layout.html" %}
+{% block admin_title %}Upcoming Programs{% endblock %}
+{% block admin_content %}
+<div style="display:flex; justify-content:flex-end; margin-bottom: var(--space-md);">
+  <a href="{{ url_for('admin.program_new') }}" class="btn btn-primary btn-sm">+ Add Programme</a>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <thead><tr><th>Title</th><th>Audience</th><th>Start Date</th><th>Price</th><th>Featured</th><th>Published</th><th>Actions</th></tr></thead>
+    <tbody>
+      {% for p in programs %}
+      <tr>
+        <td>{{ p.title }}</td>
+        <td>{{ p.audience or "-" }}</td>
+        <td>{{ p.start_date or "-" }}</td>
+        <td>{{ p.price }}</td>
+        <td>{{ "Yes" if p.is_featured else "No" }}</td>
+        <td>{{ "Yes" if p.is_published else "No" }}</td>
+        <td>
+          <div class="btn-group">
+            <a href="{{ url_for('admin.program_edit', program_id=p.id) }}" class="btn btn-outline btn-sm">Edit</a>
+            <form method="POST" action="{{ url_for('admin.program_delete', program_id=p.id) }}" data-confirm="Delete '{{ p.title }}'? This cannot be undone.">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <button type="submit" class="btn btn-sm" style="background: var(--color-error-bg); color: var(--color-error);">Delete</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="7" class="empty-state">No programmes yet. Click "+ Add Programme" to create your first one.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

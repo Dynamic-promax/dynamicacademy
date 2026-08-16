@@ -1,0 +1,39 @@
+{% extends "admin/_layout.html" %}
+{% from "_macros.html" import field %}
+{% block admin_title %}Student: {{ student.full_name }}{% endblock %}
+{% block admin_content %}
+<a href="{{ url_for('admin.students') }}" class="btn-ghost">&larr; Back to Students</a>
+
+<div class="grid grid-2" style="margin-top: var(--space-md); align-items:start;">
+  <div class="detail-panel">
+    <h2 style="font-size: var(--text-md); margin-bottom: var(--space-sm);">{{ student.registration_number }}</h2>
+    <dl>
+      <div class="detail-row"><dt>Full Name</dt><dd>{{ student.full_name }}</dd></div>
+      <div class="detail-row"><dt>Date of Birth</dt><dd>{{ student.date_of_birth or "-" }}</dd></div>
+      <div class="detail-row"><dt>Age</dt><dd>{{ student.age }}</dd></div>
+      <div class="detail-row"><dt>Gender</dt><dd>{{ student.gender or "-" }}</dd></div>
+      <div class="detail-row"><dt>Email</dt><dd>{{ student.email }}</dd></div>
+      <div class="detail-row"><dt>Phone</dt><dd>{{ student.phone }}</dd></div>
+      <div class="detail-row"><dt>Address</dt><dd>{{ student.address or "-" }}</dd></div>
+      <div class="detail-row"><dt>Course</dt><dd>{{ student.course_name_snapshot or "-" }}</dd></div>
+      <div class="detail-row"><dt>Learning Mode</dt><dd>{{ student.learning_mode or "-" }}</dd></div>
+      <div class="detail-row"><dt>Preferred Schedule</dt><dd>{{ student.preferred_schedule or "-" }}</dd></div>
+      <div class="detail-row"><dt>Current School</dt><dd>{{ student.current_school or "-" }}</dd></div>
+      <div class="detail-row"><dt>Referral Source</dt><dd>{{ student.referral_source or "-" }}</dd></div>
+      <div class="detail-row"><dt>Registered</dt><dd>{{ student.created_at.strftime('%d %b %Y, %H:%M') }}</dd></div>
+    </dl>
+    {% if student.experience_level %}<p style="margin-top: var(--space-sm);"><strong>Experience:</strong> {{ student.experience_level }}</p>{% endif %}
+    {% if student.additional_info %}<p style="margin-top: var(--space-sm);"><strong>Additional Info:</strong> {{ student.additional_info }}</p>{% endif %}
+  </div>
+
+  <div class="detail-panel">
+    <h2 style="font-size: var(--text-md); margin-bottom: var(--space-sm);">Update Status</h2>
+    <form method="POST" novalidate>
+      {{ form.hidden_tag() }}
+      {{ field(form.status) }}
+      {{ form.submit(class_="btn btn-primary btn-block") }}
+    </form>
+    <a href="{{ whatsapp_link(academy.whatsapp_number, 'Hello ' + student.full_name + ', this is Dynamic Academy regarding your registration ' + student.registration_number + '.') }}" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block" style="margin-top: var(--space-sm);">Message on WhatsApp</a>
+  </div>
+</div>
+{% endblock %}

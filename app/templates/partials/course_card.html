@@ -1,0 +1,24 @@
+{# Expects `course` in context. Used on home.html and courses.html #}
+<article class="card course-card">
+  <div class="course-card-media">
+    <img src="{{ url_for('static', filename='images/' ~ course.image) }}" alt="{{ course.title }} course illustration" loading="lazy" width="800" height="500">
+  </div>
+  <div class="course-card-body">
+    <span class="badge badge-royal">{{ course.category.replace('-', ' ')|title }}</span>
+    <h3>{{ course.title }}</h3>
+    <p class="course-card-desc">{{ course.short_description }}</p>
+    <div class="course-meta-row">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg>{{ course.age_range }}</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>{{ course.duration }}</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>{{ course.mode }}</span>
+    </div>
+    <div class="course-card-footer">
+      <span class="course-price">{{ course.price }}</span>
+      <span class="text-faint" style="font-size: var(--text-xs);">{{ course.level }}</span>
+    </div>
+    <div class="course-card-actions">
+      <a href="{{ url_for('courses.course_detail', slug=course.slug) }}" class="btn btn-outline btn-sm">View Course</a>
+      <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.course(course.title)) }}" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">Enquire</a>
+    </div>
+  </div>
+</article>

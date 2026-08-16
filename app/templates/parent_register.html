@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field, checkbox, section %}
+{% block title %}Parent/Guardian Registration | Dynamic Academy{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow on-dark">Parent/Guardian Registration</span>
+    <h1>Register My Child</h1>
+    <p>Designed specifically for parents and guardians registering a child for a course.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width: 760px;">
+    <form method="POST" class="form-card" data-enhance novalidate>
+      {{ form.hidden_tag() }}
+
+      {{ section("Parent / Guardian Information") }}
+      <div class="grid-form-2">
+        {{ field(form.parent_full_name, autocomplete="name") }}
+        {{ field(form.relationship_to_child, placeholder="e.g. Mother, Father, Guardian") }}
+      </div>
+      <div class="grid-form-2">
+        {{ field(form.parent_email, autocomplete="email") }}
+        {{ field(form.parent_phone, autocomplete="tel") }}
+      </div>
+      {{ field(form.parent_whatsapp, hint="Optional, if different from your phone number.") }}
+      {{ field(form.parent_address, autocomplete="street-address") }}
+
+      {{ section("Child Information") }}
+      <div class="grid-form-2">
+        {{ field(form.child_full_name) }}
+        {{ field(form.child_date_of_birth) }}
+      </div>
+      <div class="grid-form-2">
+        {{ field(form.child_age) }}
+        {{ field(form.child_gender) }}
+      </div>
+      <div class="grid-form-2">
+        {{ field(form.child_school) }}
+        {{ field(form.child_grade) }}
+      </div>
+
+      {{ section("Course Selection") }}
+      <div class="grid-form-2">
+        {{ field(form.course) }}
+        {{ field(form.learning_mode) }}
+      </div>
+      {{ field(form.preferred_schedule, placeholder="e.g. Weekday evenings, weekends...") }}
+      {{ field(form.experience_level) }}
+      {{ field(form.learning_goals, hint="What would you like your child to gain from this course?") }}
+      {{ field(form.additional_info) }}
+
+      {{ section("Emergency Contact") }}
+      <div class="grid-form-2">
+        {{ field(form.emergency_contact_name) }}
+        {{ field(form.emergency_contact_phone) }}
+      </div>
+      {{ field(form.emergency_contact_relationship) }}
+
+      {{ section("Consent") }}
+      {{ checkbox(form.confirm_guardian) }}
+      {{ checkbox(form.agree_terms) }}
+
+      {{ form.submit(class_="btn btn-primary btn-block") }}
+    </form>
+  </div>
+</section>
+{% endblock %}

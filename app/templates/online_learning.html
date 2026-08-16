@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Online Learning | Dynamic Academy{% endblock %}
+{% block description %}Learn from anywhere with Dynamic Academy's online classes — live instructors, project-based learning and flexible schedules.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow on-dark">Online Learning</span>
+    <h1>Learn from anywhere.</h1>
+    <p>Dynamic Academy's online classes bring the same practical, project-based teaching to learners wherever they are.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">
+      <div class="value-card reveal"><h3>Live Classes</h3><p>Real-time, instructor-led sessions — not pre-recorded videos.</p></div>
+      <div class="value-card reveal"><h3>Online Instructors</h3><p>Experienced instructors guiding every session.</p></div>
+      <div class="value-card reveal"><h3>Project-Based Learning</h3><p>Hands-on projects, the same as our physical classes.</p></div>
+      <div class="value-card reveal"><h3>Flexible Schedules</h3><p>Morning, evening and weekend options available.</p></div>
+      <div class="value-card reveal"><h3>Digital Materials</h3><p>Structured resources learners can revisit anytime.</p></div>
+      <div class="value-card reveal"><h3>Progress Tracking</h3><p>Regular feedback on each learner's development.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head centered">
+      <span class="eyebrow">Coming Soon</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Student &amp; Instructor Portals</h2>
+      <p class="lead-text" style="margin-top:0.5rem;">Dynamic Academy's learning platform is being built to support dedicated student and instructor dashboards. These are not yet active — reach out via WhatsApp for now.</p>
+    </div>
+    <div class="grid grid-3">
+      {% for title, text in [("Student Login","A dashboard for enrolled students to access classes, materials and progress."), ("Instructor Login","A workspace for instructors to manage classes and track learner progress."), ("Learning Dashboard","A unified view of courses, schedules and learning materials.")] %}
+      <div class="value-card reveal" style="text-align:center; border-style:dashed;">
+        <span class="feature-mini-icon" style="margin-inline:auto;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
+        <h3 style="margin-top: var(--space-sm);">{{ title }}</h3><p>{{ text }}</p>
+        <span class="badge badge-neutral" style="margin-top: var(--space-sm);">Coming Soon</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid grid-2" style="align-items:center;">
+    <div class="reveal">
+      <span class="eyebrow">Physical Classes</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Prefer to learn in person? We've got you covered.</h2>
+      <p class="lead-text" style="margin-top: var(--space-sm);">Selected courses and programmes are available physically at our location in {{ academy.address }}.</p>
+      <a href="{{ academy.google_maps_url }}" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top: var(--space-md);">Get Directions</a>
+    </div>
+    <div class="map-embed reveal">
+      <iframe title="Dynamic Academy location map" src="{{ academy.google_maps_embed }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "admin/_layout.html" %}
+{% from "_macros.html" import field %}
+{% block admin_title %}Child: {{ child.full_name }}{% endblock %}
+{% block admin_content %}
+<a href="{{ url_for('admin.parents') }}" class="btn-ghost">&larr; Back to Parents &amp; Children</a>
+
+<div class="grid grid-2" style="margin-top: var(--space-md); align-items:start;">
+  <div>
+    <div class="detail-panel">
+      <h2 style="font-size: var(--text-md); margin-bottom: var(--space-sm);">Child — {{ child.registration_number }}</h2>
+      <dl>
+        <div class="detail-row"><dt>Full Name</dt><dd>{{ child.full_name }}</dd></div>
+        <div class="detail-row"><dt>Date of Birth</dt><dd>{{ child.date_of_birth or "-" }}</dd></div>
+        <div class="detail-row"><dt>Age</dt><dd>{{ child.age }}</dd></div>
+        <div class="detail-row"><dt>Gender</dt><dd>{{ child.gender or "-" }}</dd></div>
+        <div class="detail-row"><dt>School</dt><dd>{{ child.current_school or "-" }}</dd></div>
+        <div class="detail-row"><dt>Grade/Class</dt><dd>{{ child.grade_class or "-" }}</dd></div>
+        <div class="detail-row"><dt>Course</dt><dd>{{ child.course_name_snapshot or "-" }}</dd></div>
+        <div class="detail-row"><dt>Learning Mode</dt><dd>{{ child.learning_mode or "-" }}</dd></div>
+        <div class="detail-row"><dt>Preferred Schedule</dt><dd>{{ child.preferred_schedule or "-" }}</dd></div>
+        <div class="detail-row"><dt>Registered</dt><dd>{{ child.created_at.strftime('%d %b %Y, %H:%M') }}</dd></div>
+      </dl>
+      {% if child.learning_goals %}<p style="margin-top: var(--space-sm);"><strong>Learning Goals:</strong> {{ child.learning_goals }}</p>{% endif %}
+    </div>
+
+    <div class="detail-panel" style="margin-top: var(--space-md);">
+      <h2 style="font-size: var(--text-md); margin-bottom: var(--space-sm);">Parent/Guardian</h2>
+      <dl>
+        <div class="detail-row"><dt>Name</dt><dd>{{ parent.full_name }}</dd></div>
+        <div class="detail-row"><dt>Relationship</dt><dd>{{ parent.relationship_to_child }}</dd></div>
+        <div class="detail-row"><dt>Email</dt><dd>{{ parent.email }}</dd></div>
+        <div class="detail-row"><dt>Phone</dt><dd>{{ parent.phone }}</dd></div>
+        <div class="detail-row"><dt>WhatsApp</dt><dd>{{ parent.whatsapp_number or "-" }}</dd></div>
+        <div class="detail-row"><dt>Address</dt><dd>{{ parent.address or "-" }}</dd></div>
+        <div class="detail-row"><dt>Emergency Contact</dt><dd>{{ parent.emergency_contact_name }} ({{ parent.emergency_contact_relationship }}) — {{ parent.emergency_contact_phone }}</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="detail-panel">
+    <h2 style="font-size: var(--text-md); margin-bottom: var(--space-sm);">Update Status</h2>
+    <form method="POST" novalidate>
+      {{ form.hidden_tag() }}
+      {{ field(form.status) }}
+      {{ form.submit(class_="btn btn-primary btn-block") }}
+    </form>
+    <a href="{{ whatsapp_link(academy.whatsapp_number, 'Hello ' + parent.full_name + ', this is Dynamic Academy regarding ' + child.full_name + \"'s registration \" + child.registration_number + '.') }}" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block" style="margin-top: var(--space-sm);">Message Parent on WhatsApp</a>
+  </div>
+</div>
+{% endblock %}

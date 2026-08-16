@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block title %}Dynamic Academy | Technology, AI & Academic Learning{% endblock %}
+{% block description %}Dynamic Academy is a premium education and technology academy in Abuja offering Python, AI, web development, robotics, academic support and exam preparation for kids, teens and adults, online and in person.{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <span class="bg-blob bg-blob-gold" aria-hidden="true"></span>
+  <span class="bg-blob bg-blob-cyan" aria-hidden="true"></span>
+  <span class="bg-blob bg-blob-royal" aria-hidden="true"></span>
+  <div class="container hero-inner">
+    <div class="reveal is-visible">
+      <span class="eyebrow on-dark">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2 14.5 8.5 21 9.3l-5 4.6L17.5 21 12 17.3 6.5 21 8 13.9 3 9.3l6.5-.8Z"/></svg>
+        Dynamic Academy — Abuja | Kaduna
+      </span>
+      <h1 class="display-heading hero-heading">Think. Learn. Create. Lead <span class="accent">Create. Lead.</span></h1>
+      <p class="hero-lead">Practical education for the next generation of creators, problem-solvers and technology leaders. Dynamic Academy blends academic excellence with real technology skills — online and in person in Abuja and Kaduna.</p>
+
+      <div class="hero-actions">
+        <a href="{{ url_for('courses.course_list') }}" class="btn btn-gold">Explore Courses</a>
+        <a href="#enroll" class="btn btn-outline-light">Enroll Now</a>
+        <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.general) }}" class="btn btn-whatsapp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.1 4 4.1-1.1A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 0 1 7 12.5l-.2.3.6 2.3-2.4-.6-.3.2A8.2 8.2 0 1 1 12 3.8Z"/></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+
+      <div class="hero-trust-row">
+        <span><span class="dot"></span> Online & Physical Classes</span>
+        <span><span class="dot"></span> Kids, Teens & Adults</span>
+        <span><span class="dot"></span> Project-Based Learning</span>
+      </div>
+    </div>
+
+    <div class="hero-art reveal is-visible">
+      <img src="{{ url_for('static', filename='images/hero-art.jpg') }}" alt="Illustration of a learner surrounded by coding, AI and robotics elements" width="560" height="300">
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="trust-panel reveal is-visible">
+    <h2 class="section-heading" style="font-size: var(--text-lg); text-align:center; margin-bottom: var(--space-md);">Learning designed around the learner.</h2>
+    <div class="grid grid-4">
+      <div class="feature-mini">
+        <span class="feature-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3 5 12l4 1 1 4 9-9-5-5Z"/></svg></span>
+        <div><h3>Practical Learning</h3><p>Real, hands-on projects — not just theory.</p></div>
+      </div>
+      <div class="feature-mini">
+        <span class="feature-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></span>
+        <div><h3>Dedicated Instructors</h3><p>Guided by instructors focused on real progress.</p></div>
+      </div>
+      <div class="feature-mini">
+        <span class="feature-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+        <div><h3>Online & Physical</h3><p>Learn from anywhere, or join us in Abuja or Kaduna.</p></div>
+      </div>
+      <div class="feature-mini">
+        <span class="feature-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19V5a1 1 0 0 1 1-1h9l6 6v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"/><path d="M13 4v6h6"/></svg></span>
+        <div><h3>Project-Based</h3><p>Every course ends with something learners built.</p></div>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-item"><div class="stat-number"><span data-counter="500" data-suffix="+">0</span></div><div class="stat-label">Students Trained</div></div>
+      <div class="stat-item"><div class="stat-number"><span data-counter="22" data-suffix="+">0</span></div><div class="stat-label">Courses & Programmes</div></div>
+      <div class="stat-item"><div class="stat-number"><span data-counter="150" data-suffix="+">0</span></div><div class="stat-label">Projects Completed</div></div>
+      <div class="stat-item"><div class="stat-number"><span data-counter="10" data-suffix="+">0</span></div><div class="stat-label">Years of Teaching Experience</div></div>
+    </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head centered">
+      <span class="eyebrow">Why Dynamic Academy</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Trust built for parents. Skills built for the future.</h2>
+      <p class="lead-text" style="margin-top:0.75rem;">Dynamic Academy combines academic excellence, digital literacy, programming and AI skills — taught by dedicated instructors in a safe, structured environment.</p>
+    </div>
+    <div class="grid grid-4">
+      <div class="value-card reveal">
+        <span class="feature-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="M3 8v8l9 5 9-5V8"/></svg></span>
+        <h3>Academic Excellence</h3><p>Structured support across core subjects and examinations.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="feature-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/></svg></span>
+        <h3>Technology Skills</h3><p>Programming, AI, robotics and digital creativity.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="feature-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+        <h3>Safe & Trusted</h3><p>Age-appropriate, structured learning environments.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="feature-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 11-14h-8l1-6Z"/></svg></span>
+        <h3>Future-Ready</h3><p>Skills that prepare learners for tomorrow's careers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head centered">
+      <span class="eyebrow">Featured Courses</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">A course catalogue built for the future.</h2>
+    </div>
+    <div class="grid grid-3">
+      {% for course in featured_courses %}
+      <div class="reveal">
+        {% include "partials/course_card.html" %}
+      </div>
+      {% endfor %}
+    </div>
+    {% if featured_programs %}
+<section class="section section-relative">
+  <span class="section-blob section-blob-gold" style="width:260px; height:260px; top:20px; left:-70px;" aria-hidden="true"></span>
+  <div class="container">
+    <div class="section-head centered">
+      <span class="eyebrow">Upcoming Programs</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Bootcamps, corporate training and focused programmes.</h2>
+      <p class="lead-text" style="margin-top:0.75rem;">Time-bound programmes built around a specific goal — see what's coming up next.</p>
+    </div>
+    <div class="grid grid-3">
+      {% for program in featured_programs %}
+      <div class="reveal">
+        {% include "partials/program_card.html" %}
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center; margin-top: var(--space-lg);">
+      <a href="{{ url_for('programs.program_list') }}" class="btn btn-primary">View All Programs</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">
+      <div class="value-card reveal">
+        <h3>For Kids & Teens</h3>
+        <p>Building tomorrow's creators today — Python, Scratch, AI, robotics and digital creativity for ages 10+.</p>
+        <a href="{{ url_for('main.kids') }}" class="btn btn-outline btn-sm" style="margin-top: var(--space-sm);">Explore Kids Programmes</a>
+      </div>
+      <div class="value-card reveal">
+        <h3>For Adults</h3>
+        <p>Career-focused technology training — Python, AI, web development and digital skills, at a flexible pace.</p>
+        <a href="{{ url_for('main.adults') }}" class="btn btn-outline btn-sm" style="margin-top: var(--space-sm);">Explore Adult Courses</a>
+      </div>
+      <div class="value-card reveal">
+        <h3>Online Learning</h3>
+        <p>Live, instructor-led classes you can join from anywhere — with the same project-based teaching.</p>
+        <a href="{{ url_for('main.online_learning') }}" class="btn btn-outline btn-sm" style="margin-top: var(--space-sm);">Learn From Anywhere</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head centered">
+      <span class="eyebrow">How Registration Works</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Getting started is simple.</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-item reveal"><span class="step-number">01</span><h3>Choose a Course</h3><p>Browse our technology, academic or exam-prep courses.</p></div>
+      <div class="step-item reveal"><span class="step-number">02</span><h3>Choose Your Path</h3><p>Register as a student, or as a parent/guardian for your child.</p></div>
+      <div class="step-item reveal"><span class="step-number">03</span><h3>Complete Registration</h3><p>Fill in the registration form — it only takes a few minutes.</p></div>
+      <div class="step-item reveal"><span class="step-number">04</span><h3>Start Learning</h3><p>Receive confirmation and begin your Dynamic Academy journey.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="enroll">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <span class="eyebrow on-dark">Ready When You Are</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Ready to start your Dynamic Academy journey?</h2>
+      <p>Register as a student, register your child, or chat with us on WhatsApp to ask any questions first.</p>
+      <div class="cta-actions">
+        <a href="{{ url_for('registration.student_register') }}" class="btn btn-gold">Register as Student</a>
+        <a href="{{ url_for('registration.parent_register') }}" class="btn btn-outline-light">Register My Child</a>
+        <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.general) }}" class="btn btn-whatsapp" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

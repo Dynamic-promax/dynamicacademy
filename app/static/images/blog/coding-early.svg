@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Coding Early placeholder graphic">
+  <defs>
+    <linearGradient id="g765987203" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2547a8" />
+      <stop offset="100%" stop-color="#c8952c" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g765987203)" />
+  <circle cx="461" cy="357" r="41" fill="white" opacity="0.05" /><circle cx="462" cy="357" r="42" fill="white" opacity="0.05" /><circle cx="463" cy="357" r="43" fill="white" opacity="0.05" /><circle cx="464" cy="358" r="44" fill="white" opacity="0.05" />
+  <circle cx="400.0" cy="230.0" r="46" fill="white" opacity="0.12" />
+  <circle cx="400.0" cy="230.0" r="30" fill="white" opacity="0.18" />
+  <path d="M386.0 230.0 l14 -14 l14 14 l-14 14 z" fill="white" opacity="0.9" />
+  <text x="400.0" y="454" text-anchor="middle" font-family="Georgia, serif" font-size="26" font-weight="700" fill="white" opacity="0.95">Coding Early</text>
+  <text x="400.0" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" opacity="0.6">Dynamic Academy — placeholder image</text>
+</svg>

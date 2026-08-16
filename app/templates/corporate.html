@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Corporate Training | Dynamic Academy{% endblock %}
+{% block description %}Corporate technology and digital-skills training for teams and organisations in Abuja, Nigeria — delivered by Dynamic Academy.{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <span class="bg-blob bg-blob-gold" aria-hidden="true"></span>
+  <span class="bg-blob bg-blob-cyan" aria-hidden="true"></span>
+  <span class="bg-blob bg-blob-royal" aria-hidden="true"></span>
+  <div class="container hero-inner" style="grid-template-columns: 1fr;">
+    <div class="reveal is-visible" style="max-width: 680px;">
+      <span class="eyebrow on-dark">Corporate Training</span>
+      <h1 class="display-heading hero-heading">Upskill your team. <span class="accent">Future-proof your business.</span></h1>
+      <p class="hero-lead">Dynamic Academy delivers practical, hands-on technology and digital-skills training for organisations — from foundational digital literacy to AI, programming and data skills for teams.</p>
+      <div class="hero-actions">
+        <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.corporate) }}" class="btn btn-gold" target="_blank" rel="noopener">Enquire About Corporate Training</a>
+        <a href="{{ url_for('contact.contact') }}" class="btn btn-outline-light">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-relative">
+  <span class="section-blob section-blob-royal" style="width:260px; height:260px; top:-40px; right:-60px;" aria-hidden="true"></span>
+  <div class="container">
+    <div class="section-head centered">
+      <span class="eyebrow">Why Train With Us</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Training built around your team's real needs.</h2>
+    </div>
+    <div class="grid grid-4">
+      <div class="value-card reveal">
+        <span class="feature-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="M3 8v8l9 5 9-5V8"/></svg></span>
+        <h3 style="margin-top: var(--space-sm);">Customised Curriculum</h3>
+        <p>Training content tailored to your team's role, industry and skill level.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="feature-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+        <h3 style="margin-top: var(--space-sm);">On-site or Online</h3>
+        <p>Delivered at your office in Abuja, or fully online for distributed teams.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="feature-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19V5a1 1 0 0 1 1-1h9l6 6v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"/><path d="M13 4v6h6"/></svg></span>
+        <h3 style="margin-top: var(--space-sm);">Hands-On Projects</h3>
+        <p>Teams leave with real, applied skills — not just slides and theory.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="feature-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></span>
+        <h3 style="margin-top: var(--space-sm);">Flexible Group Sizes</h3>
+        <p>From small departments to organisation-wide training programmes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-gold-wash">
+  <div class="container">
+    <div class="section-head centered">
+      <span class="eyebrow">Popular Corporate Topics</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Training areas organisations ask for most.</h2>
+    </div>
+    <div class="chip-list" style="justify-content:center;">
+      {% for topic in ["Digital Skills & Productivity","Data Analysis","Artificial Intelligence for Business","Python for Automation","Cybersecurity Awareness","Graphics & Content Creation","Web & No-Code Tools"] %}
+        <span class="chip" style="font-size: var(--text-sm); padding: 0.6rem 1rem;">{{ topic }}</span>
+      {% endfor %}
+    </div>
+    <p class="text-faint" style="text-align:center; margin-top: var(--space-md); font-size: var(--text-sm);">Don't see your topic? We build custom programmes on request.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <span class="eyebrow on-dark">Let's Talk</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Ready to plan training for your team?</h2>
+      <p>Tell us about your organisation's goals and team size, and we'll put together a tailored proposal.</p>
+      <div class="cta-actions">
+        <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.corporate) }}" class="btn btn-gold" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <a href="{{ url_for('contact.contact') }}" class="btn btn-outline-light">Send a Message</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

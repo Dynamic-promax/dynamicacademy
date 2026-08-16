@@ -1,0 +1,36 @@
+{# =============================================================
+   REUSABLE FORM FIELD MACROS
+   Used by every form template so inputs, labels, hints and error
+   messages stay visually and structurally consistent site-wide.
+   ============================================================= #}
+
+{% macro field(f, hint=None, placeholder=None, autocomplete=None) %}
+  <div class="field">
+    <label for="{{ f.id }}">
+      {{ f.label.text }}
+      {% if f.flags.required %}<span class="required" aria-hidden="true">*</span>{% endif %}
+    </label>
+    {{ f(class_=("is-invalid" if f.errors else ""), placeholder=placeholder, autocomplete=autocomplete, **({"aria-invalid": "true"} if f.errors else {})) }}
+    {% if hint and not f.errors %}<p class="field-hint">{{ hint }}</p>{% endif %}
+    {% for error in f.errors %}
+      <p class="field-error" role="alert">{{ error }}</p>
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+{% macro checkbox(f) %}
+  <div class="field">
+    <div class="checkbox-field">
+      {{ f(**({"aria-invalid": "true"} if f.errors else {})) }}
+      <label for="{{ f.id }}">{{ f.label.text }}</label>
+    </div>
+    {% for error in f.errors %}
+      <p class="field-error" role="alert">{{ error }}</p>
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+{% macro section(title, hint=None) %}
+  <h2 class="form-section-title">{{ title }}</h2>
+  {% if hint %}<p class="form-section-hint">{{ hint }}</p>{% endif %}
+{% endmacro %}

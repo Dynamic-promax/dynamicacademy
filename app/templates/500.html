@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Something Went Wrong | Dynamic Academy{% endblock %}
+{% block content %}
+<section class="section" style="padding-top: var(--space-3xl); text-align:center;">
+  <div class="container" style="max-width: 480px;">
+    <h1>Something Went Wrong</h1>
+    <p class="lead-text" style="margin-top: var(--space-sm);">We're sorry, something unexpected happened on our end. Please try again, or contact us on WhatsApp if the problem continues.</p>
+    <div class="cta-actions">
+      <a href="{{ url_for('main.home') }}" class="btn btn-primary">Home</a>
+      <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.general) }}" class="btn btn-whatsapp" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "admin/_layout.html" %}
+{% block admin_title %}Contact Messages{% endblock %}
+{% block admin_content %}
+<div class="table-wrap">
+  <table class="data-table">
+    <thead><tr><th>Name</th><th>Contact</th><th>Course Interest</th><th>Message</th><th>Received</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      {% for m in messages %}
+      <tr>
+        <td>{{ m.name }}</td>
+        <td>{{ m.email }}<br><span class="text-faint" style="font-size:var(--text-xs);">{{ m.phone or "" }}</span></td>
+        <td>{{ m.course_interest or "-" }}</td>
+        <td style="max-width:280px;">{{ m.message }}</td>
+        <td>{{ m.created_at.strftime('%d %b %Y') }}</td>
+        <td><span class="status-pill {{ 'status-Enrolled' if m.is_resolved else 'status-Pending' }}">{{ "Resolved" if m.is_resolved else "Pending" }}</span></td>
+        <td>
+          <form method="POST" action="{{ url_for('admin.resolve_message', message_id=m.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="btn btn-outline btn-sm">{{ "Mark Pending" if m.is_resolved else "Mark Resolved" }}</button>
+          </form>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="7" class="empty-state">No messages yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Digital Skills placeholder graphic">
+  <defs>
+    <linearGradient id="g1956411716" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#101f4d" />
+      <stop offset="100%" stop-color="#2547a8" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g1956411716)" />
+  <circle cx="300" cy="137" r="20" fill="white" opacity="0.05" /><circle cx="301" cy="137" r="21" fill="white" opacity="0.05" /><circle cx="302" cy="137" r="22" fill="white" opacity="0.05" /><circle cx="303" cy="137" r="23" fill="white" opacity="0.05" />
+  <circle cx="400.0" cy="230.0" r="46" fill="white" opacity="0.12" />
+  <circle cx="400.0" cy="230.0" r="30" fill="white" opacity="0.18" />
+  <path d="M386.0 230.0 l14 -14 l14 14 l-14 14 z" fill="white" opacity="0.9" />
+  <text x="400.0" y="454" text-anchor="middle" font-family="Georgia, serif" font-size="26" font-weight="700" fill="white" opacity="0.95">Digital Skills</text>
+  <text x="400.0" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" opacity="0.6">Dynamic Academy — placeholder image</text>
+</svg>

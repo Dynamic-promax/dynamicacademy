@@ -1,0 +1,34 @@
+{% extends "admin/_layout.html" %}
+{% from "_macros.html" import field, checkbox %}
+{% block admin_title %}{{ "Edit Course" if course else "Add Course" }}{% endblock %}
+{% block admin_content %}
+<a href="{{ url_for('admin.courses') }}" class="btn-ghost">&larr; Back to Courses</a>
+
+<div class="form-card" style="margin-top: var(--space-md); max-width: 720px;">
+  <form method="POST" novalidate>
+    {{ form.hidden_tag() }}
+    {{ field(form.title) }}
+    {{ field(form.image, hint="e.g. courses/python.jpg — file must exist in app/static/images/") }}
+    <div class="grid-form-2">
+      {{ field(form.category) }}
+      {{ field(form.level) }}
+    </div>
+    {{ field(form.short_description) }}
+    {{ field(form.overview) }}
+    {{ field(form.who_its_for) }}
+    <div class="grid-form-2">
+      {{ field(form.age_range) }}
+      {{ field(form.duration) }}
+    </div>
+    <div class="grid-form-2">
+      {{ field(form.mode) }}
+      {{ field(form.price) }}
+    </div>
+    {{ field(form.curriculum, hint="One topic per line — shown as a list on the course page.") }}
+    {{ field(form.outcomes, hint="One outcome per line.") }}
+    {{ checkbox(form.is_featured) }}
+    {{ checkbox(form.is_published) }}
+    {{ form.submit(class_="btn btn-primary btn-block") }}
+  </form>
+</div>
+{% endblock %}

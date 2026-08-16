@@ -1,0 +1,78 @@
+<header class="site-header">
+  <div class="container nav-row">
+    <a href="{{ url_for('main.home') }}" class="brand">
+      <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Dynamic Academy logo" class="brand-mark-img">
+      <span class="brand-text">
+        <span class="brand-name">Dynamic Academy</span>
+        <span class="brand-motto">Think. Learn. Create. Lead.</span>
+      </span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="{{ url_for('main.home') }}" {% if request.endpoint == 'main.home' %}aria-current="page"{% endif %}>Home</a></li>
+        <li><a href="{{ url_for('main.about') }}" {% if request.endpoint == 'main.about' %}aria-current="page"{% endif %}>About</a></li>
+
+        <li class="nav-dropdown">
+          <a href="{{ url_for('courses.course_list') }}"
+             {% if request.endpoint and (request.endpoint.startswith('courses.') or request.endpoint in ['main.kids', 'main.adults']) %}aria-current="page"{% endif %}>
+            Courses
+            <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <div class="dropdown-panel" role="menu">
+            <a href="{{ url_for('courses.course_list') }}" role="menuitem">All Courses</a>
+            <a href="{{ url_for('courses.course_list', category='technology') }}" role="menuitem">Technology &amp; Digital Skills</a>
+            <a href="{{ url_for('courses.course_list', category='academic') }}" role="menuitem">Academic Support</a>
+            <a href="{{ url_for('courses.course_list', category='exam-prep') }}" role="menuitem">Examination Preparation</a>
+            <div class="dropdown-divider"></div>
+            <a href="{{ url_for('main.kids') }}" role="menuitem">Kids &amp; Teens</a>
+            <a href="{{ url_for('main.adults') }}" role="menuitem">Adults</a>
+          </div>
+        </li>
+
+        <li><a href="{{ url_for('main.online_learning') }}" {% if request.endpoint == 'main.online_learning' %}aria-current="page"{% endif %}>Online Learning</a></li>
+        <li><a href="{{ url_for('programs.program_list') }}" {% if request.endpoint and request.endpoint.startswith('programs.') %}aria-current="page"{% endif %}>Upcoming Programs</a></li>
+        <li><a href="{{ url_for('main.corporate') }}" {% if request.endpoint == 'main.corporate' %}aria-current="page"{% endif %}>Corporate</a></li>
+        <li><a href="{{ url_for('main.tutors') }}" {% if request.endpoint == 'main.tutors' %}aria-current="page"{% endif %}>Tutors</a></li>
+        <li><a href="{{ url_for('contact.contact') }}" {% if request.endpoint == 'contact.contact' %}aria-current="page"{% endif %}>Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.general) }}" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.1 4 4.1-1.1A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 0 1 7 12.5l-.2.3.6 2.3-2.4-.6-.3.2A8.2 8.2 0 1 1 12 3.8Zm-3.4 4.3c-.2 0-.5 0-.7.4-.2.4-1 1-.9 2.3.1 1.4 1 2.7 1.2 2.9.1.2 2 3.2 5 4.3 2.5 1 3 .8 3.5.7.5 0 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.4l-2-1c-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.7-2-1.9-2.3-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6-.1-.2-.7-1.8-1-2.4-.2-.6-.5-.5-.7-.5h-.2Z"/></svg>
+        WhatsApp
+      </a>
+      <a href="{{ url_for('courses.course_list') }}" class="btn btn-primary btn-sm">Explore Courses</a>
+    </div>
+
+    <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<nav id="mobile-nav" class="mobile-nav" data-mobile-nav aria-label="Mobile">
+  <div class="container">
+    <ul>
+      <li><a href="{{ url_for('main.home') }}">Home</a></li>
+      <li><a href="{{ url_for('main.about') }}">About</a></li>
+      <li><a href="{{ url_for('courses.course_list') }}">Courses</a></li>
+      <li><a href="{{ url_for('main.kids') }}">&nbsp;&nbsp;&nbsp;&nbsp;Kids &amp; Teens</a></li>
+      <li><a href="{{ url_for('main.adults') }}">&nbsp;&nbsp;&nbsp;&nbsp;Adults</a></li>
+      <li><a href="{{ url_for('main.online_learning') }}">Online Learning</a></li>
+      <li><a href="{{ url_for('programs.program_list') }}">Upcoming Programs</a></li>
+      <li><a href="{{ url_for('main.corporate') }}">Corporate</a></li>
+      <li><a href="{{ url_for('main.tutors') }}">Tutors</a></li>
+      <li><a href="{{ url_for('main.faq') }}">FAQ</a></li>
+      <li><a href="{{ url_for('main.blog') }}">Blog</a></li>
+      <li><a href="{{ url_for('contact.contact') }}">Contact</a></li>
+    </ul>
+    <div class="mobile-nav-actions">
+      <a href="{{ url_for('courses.course_list') }}" class="btn btn-primary btn-block">Explore Courses</a>
+      <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.general) }}" class="btn btn-whatsapp btn-block" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    </div>
+  </div>
+</nav>

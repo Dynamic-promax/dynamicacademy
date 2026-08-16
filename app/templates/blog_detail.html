@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} | Dynamic Academy Blog{% endblock %}
+{% block description %}{{ post.excerpt }}{% endblock %}
+{% block content %}
+<section class="section" style="padding-top: var(--space-xl);">
+  <div class="container" style="max-width: 720px;">
+    <nav class="breadcrumb" style="justify-content:flex-start; color: var(--color-ink-faint);">
+      <a href="{{ url_for('main.home') }}" style="color:inherit;">Home</a> /
+      <a href="{{ url_for('main.blog') }}" style="color:inherit;">Blog</a> /
+      <span>{{ post.title }}</span>
+    </nav>
+
+    <span class="badge badge-royal" style="margin-top: var(--space-md);">{{ post.category }}</span>
+    <h1 style="text-align:left; margin-top: var(--space-sm);">{{ post.title }}</h1>
+    <p class="text-faint" style="margin-top: var(--space-xs);">{{ post.author }} &middot; {{ post.created_at.strftime('%d %B %Y') }}</p>
+
+    <div class="form-flash info" style="margin-top: var(--space-md);">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+      This is demo blog content included to showcase the blog layout. Replace with real articles before launch.
+    </div>
+
+    <img src="{{ url_for('static', filename='images/' ~ post.image) }}" alt="{{ post.title }}" style="width:100%; border-radius: var(--radius-lg); margin-top: var(--space-lg); border:1px solid var(--color-border);">
+
+    <div style="margin-top: var(--space-lg); line-height: var(--leading-relaxed);">
+      {% for paragraph in post.content.split('\n\n') %}
+        <p style="margin-bottom: var(--space-sm);">{{ paragraph }}</p>
+      {% endfor %}
+    </div>
+
+    {% if related %}
+    <div style="margin-top: var(--space-xl); border-top:1px solid var(--color-border); padding-top: var(--space-lg);">
+      <h2 class="section-heading" style="font-size: var(--text-lg);">Related Articles</h2>
+      <div class="grid grid-3" style="margin-top: var(--space-md);">
+        {% for r in related %}
+          <a href="{{ url_for('main.blog_detail', slug=r.slug) }}" class="value-card"><strong style="color:var(--color-navy-900);">{{ r.title }}</strong><p style="margin-top:0.4rem;">{{ r.excerpt }}</p></a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

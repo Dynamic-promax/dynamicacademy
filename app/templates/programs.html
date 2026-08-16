@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Upcoming Programs | Dynamic Academy{% endblock %}
+{% block description %}Explore Dynamic Academy's upcoming programmes — bootcamps, corporate training, holiday classes and more.{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow on-dark">Upcoming Programs</span>
+    <h1>Focused programmes for a specific goal, in a specific timeframe.</h1>
+    <p>Bootcamps, corporate training cohorts, holiday programmes and more — browse what's coming up next.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">
+      {% for program in programs %}
+        <div class="reveal">{% include "partials/program_card.html" %}</div>
+      {% else %}
+        <p class="empty-state">No programmes are currently listed. Check back soon, or contact us on WhatsApp for what's coming up.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <h2 class="section-heading">Don't see the right fit yet?</h2>
+      <p>Chat with our team on WhatsApp — we can let you know what's coming up next.</p>
+      <div class="cta-actions">
+        <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.general) }}" class="btn btn-whatsapp" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

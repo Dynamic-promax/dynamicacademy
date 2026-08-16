@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Dynamic Academy | Technology, AI &amp; Academic Learning{% endblock %}</title>
+  <meta name="description" content="{% block description %}Dynamic Academy is a premium education and technology academy in Abuja, Nigeria, offering programming, AI, academic support and examination preparation for kids, teens and adults.{% endblock %}">
+  <meta property="og:title" content="{% block og_title %}Dynamic Academy | Think. Learn. Create. Lead.{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Practical education for the next generation of creators, problem-solvers and technology leaders.{% endblock %}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{ url_for('static', filename='images/logo.svg', _external=True) }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tokens.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  {% include "partials/navbar.html" %}
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="container" style="padding-top: var(--space-sm);">
+        {% for category, message in messages %}
+          <div class="form-flash {{ 'error' if category == 'error' else category }}" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "partials/footer.html" %}
+  {% include "partials/whatsapp_float.html" %}
+
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

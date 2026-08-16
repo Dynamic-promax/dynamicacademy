@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Page Not Found | Dynamic Academy{% endblock %}
+{% block content %}
+<section class="hero" style="min-height:60vh; display:flex; align-items:center;">
+  <div class="container" style="text-align:center; position:relative;">
+    <p style="font-family: var(--font-display); font-size: 5rem; font-weight:700; color: var(--color-gold-400);">404</p>
+    <h1 style="color:white;">This page couldn't be found.</h1>
+    <p class="text-on-dark" style="max-width:420px; margin: var(--space-sm) auto 0;">The page you're looking for may have moved. Let's get you back on track.</p>
+    <div class="cta-actions">
+      <a href="{{ url_for('main.home') }}" class="btn btn-gold">Back to Home</a>
+      <a href="{{ url_for('courses.course_list') }}" class="btn btn-outline-light">Explore Courses</a>
+      <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.general) }}" class="btn btn-whatsapp" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

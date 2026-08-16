@@ -1,0 +1,29 @@
+{# Expects `program` in context. Used on programs.html and home.html #}
+<article class="card course-card">
+  <div class="course-card-media">
+    <img src="{{ url_for('static', filename='images/' ~ program.image) }}" alt="{{ program.title }} illustration" loading="lazy" width="800" height="500">
+  </div>
+  <div class="course-card-body">
+    {% if program.audience %}<span class="badge badge-royal">{{ program.audience }}</span>{% endif %}
+    <h3>{{ program.title }}</h3>
+    <p class="course-card-desc">{{ program.short_description }}</p>
+    <div class="course-meta-row">
+      {% if program.start_date %}
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Starts {{ program.start_date }}</span>
+      {% endif %}
+      {% if program.duration %}
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>{{ program.duration }}</span>
+      {% endif %}
+      {% if program.mode %}
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>{{ program.mode }}</span>
+      {% endif %}
+    </div>
+    <div class="course-card-footer">
+      <span class="course-price">{{ program.price }}</span>
+    </div>
+    <div class="course-card-actions">
+      <a href="{{ url_for('programs.program_detail', slug=program.slug) }}" class="btn btn-outline btn-sm">View Programme</a>
+      <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.program(program.title)) }}" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">Enquire</a>
+    </div>
+  </div>
+</article>

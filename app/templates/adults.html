@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}For Adults | Dynamic Academy{% endblock %}
+{% block description %}Career-focused technology training for adults — Python, data analysis, AI, web development, digital skills and graphics design in Abuja.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow on-dark">For Adults</span>
+    <h1>Practical technology skills for real career growth.</h1>
+    <p>Whether you're switching careers, upskilling, or exploring technology for the first time, Dynamic Academy offers beginner-friendly, career-focused courses.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-4">
+      <div class="value-card reveal"><h3>Career-Focused</h3><p>Courses designed around real, in-demand professional skills.</p></div>
+      <div class="value-card reveal"><h3>Beginner-Friendly</h3><p>No prior experience needed to get started.</p></div>
+      <div class="value-card reveal"><h3>Flexible Schedules</h3><p>Learn around your work and family commitments.</p></div>
+      <div class="value-card reveal"><h3>Online Learning</h3><p>Study from anywhere with live instructor support.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head centered">
+      <span class="eyebrow">Recommended For Adults</span>
+      <h2 class="section-heading" style="margin-top:0.5rem;">Popular Courses</h2>
+    </div>
+    <div class="grid grid-3">
+      {% for course in courses %}<div class="reveal">{% include "partials/course_card.html" %}</div>{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <h2 class="section-heading">Ready to build new skills?</h2>
+      <p>Join a beginner-friendly, career-focused course today.</p>
+      <div class="cta-actions">
+        <a href="{{ url_for('registration.student_register') }}" class="btn btn-gold">Register as Student</a>
+        <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.general) }}" class="btn btn-whatsapp" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

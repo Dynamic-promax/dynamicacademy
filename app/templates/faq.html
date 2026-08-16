@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}FAQ | Dynamic Academy{% endblock %}
+{% block description %}Frequently asked questions about Dynamic Academy's courses, registration, pricing and learning modes.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow on-dark">FAQ</span>
+    <h1>Frequently Asked Questions</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width: 720px;">
+    <div style="border:1px solid var(--color-border); border-radius: var(--radius-md); overflow:hidden;">
+      {% for q, a in faqs %}
+      <details style="border-bottom: 1px solid var(--color-border);" {{ "open" if loop.first }}>
+        <summary style="padding: var(--space-sm) var(--space-md); font-weight:600; cursor:pointer; color: var(--color-navy-900);">{{ q }}</summary>
+        <p style="padding: 0 var(--space-md) var(--space-md); color: var(--color-ink-soft); font-size: var(--text-sm); line-height: var(--leading-relaxed);">{{ a }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

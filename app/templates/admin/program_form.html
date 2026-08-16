@@ -1,0 +1,29 @@
+{% extends "admin/_layout.html" %}
+{% from "_macros.html" import field, checkbox %}
+{% block admin_title %}{{ "Edit Programme" if program else "Add Programme" }}{% endblock %}
+{% block admin_content %}
+<a href="{{ url_for('admin.programs') }}" class="btn-ghost">&larr; Back to Programs</a>
+
+<div class="form-card" style="margin-top: var(--space-md); max-width: 720px;">
+  <form method="POST" novalidate>
+    {{ form.hidden_tag() }}
+    {{ field(form.title) }}
+    {{ field(form.short_description) }}
+    {{ field(form.description) }}
+    <div class="grid-form-2">
+      {{ field(form.audience, hint="e.g. Kids & Teens, Corporate Teams") }}
+      {{ field(form.start_date, hint="e.g. 11th August 2026, or 'Rolling intake'") }}
+    </div>
+    <div class="grid-form-2">
+      {{ field(form.duration) }}
+      {{ field(form.mode) }}
+    </div>
+    {{ field(form.price) }}
+    {{ field(form.highlights, hint="One highlight per line — shown as a checklist on the programme page.") }}
+    {{ field(form.image, hint="e.g. programs/bootcamp.jpg — file must exist in app/static/images/") }}
+    {{ checkbox(form.is_featured) }}
+    {{ checkbox(form.is_published) }}
+    {{ form.submit(class_="btn btn-primary btn-block") }}
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+.env
+instance/dynamic_academy.db
+instance/uploads/tutors/cv/*
+instance/uploads/tutors/certificates/*
+!instance/uploads/tutors/cv/.gitkeep
+!instance/uploads/tutors/certificates/.gitkeep
+.DS_Store
+*.log

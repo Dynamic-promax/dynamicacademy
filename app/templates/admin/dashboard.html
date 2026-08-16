@@ -1,0 +1,85 @@
+{% extends "admin/_layout.html" %}
+{% block admin_title %}Dashboard{% endblock %}
+{% block admin_content %}
+
+<div class="grid grid-4" style="margin-bottom: var(--space-lg);">
+  <div class="stat-card"><div class="stat-number">{{ stats.total_students }}</div><div class="stat-label">Total Students</div></div>
+  <div class="stat-card"><div class="stat-number">{{ stats.total_children }}</div><div class="stat-label">Registered Children</div></div>
+  <div class="stat-card"><div class="stat-number">{{ stats.total_tutors }}</div><div class="stat-label">Tutor Applications</div></div>
+  <div class="stat-card"><div class="stat-number">{{ stats.total_courses }}</div><div class="stat-label">Total Courses</div></div>
+</div>
+<div class="grid grid-4" style="margin-bottom: var(--space-xl);">
+  <div class="stat-card"><div class="stat-number">{{ stats.total_parents }}</div><div class="stat-label">Total Parents</div></div>
+  <div class="stat-card"><div class="stat-number">{{ stats.total_messages }}</div><div class="stat-label">Contact Enquiries</div></div>
+  <div class="stat-card"><div class="stat-number">{{ stats.pending_students + stats.pending_children }}</div><div class="stat-label">New Registrations (Pending)</div></div>
+  <div class="stat-card"><div class="stat-number">{{ stats.pending_tutors }}</div><div class="stat-label">Pending Tutor Reviews</div></div>
+</div>
+
+<div class="grid grid-2">
+  <div class="detail-panel">
+    <h2 style="font-size: var(--text-md); margin-bottom: var(--space-sm);">Recent Student Registrations</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Reg. No.</th><th>Name</th><th>Course</th><th>Status</th></tr></thead>
+        <tbody>
+          {% for s in recent_students %}
+          <tr><td><a href="{{ url_for('admin.student_detail', student_id=s.id) }}">{{ s.registration_number }}</a></td><td>{{ s.full_name }}</td><td>{{ s.course_name_snapshot }}</td><td><span class="status-pill status-{{ s.status }}">{{ s.status }}</span></td></tr>
+          {% else %}
+          <tr><td colspan="4" class="empty-state">No student registrations yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="detail-panel">
+    <h2 style="font-size: var(--text-md); margin-bottom: var(--space-sm);">Recent Child Registrations</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Reg. No.</th><th>Child</th><th>Course</th><th>Status</th></tr></thead>
+        <tbody>
+          {% for c in recent_children %}
+          <tr><td><a href="{{ url_for('admin.parent_detail', child_id=c.id) }}">{{ c.registration_number }}</a></td><td>{{ c.full_name }}</td><td>{{ c.course_name_snapshot }}</td><td><span class="status-pill status-{{ c.status }}">{{ c.status }}</span></td></tr>
+          {% else %}
+          <tr><td colspan="4" class="empty-state">No child registrations yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="grid grid-2" style="margin-top: var(--space-lg);">
+  <div class="detail-panel">
+    <h2 style="font-size: var(--text-md); margin-bottom: var(--space-sm);">Recent Tutor Applications</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>App. No.</th><th>Name</th><th>Status</th></tr></thead>
+        <tbody>
+          {% for t in recent_tutors %}
+          <tr><td><a href="{{ url_for('admin.tutor_detail', application_id=t.id) }}">{{ t.application_number }}</a></td><td>{{ t.full_name }}</td><td><span class="status-pill status-{{ t.status }}">{{ t.status }}</span></td></tr>
+          {% else %}
+          <tr><td colspan="3" class="empty-state">No tutor applications yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="detail-panel">
+    <h2 style="font-size: var(--text-md); margin-bottom: var(--space-sm);">Recent Contact Messages</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Name</th><th>Message</th></tr></thead>
+        <tbody>
+          {% for m in recent_messages %}
+          <tr><td>{{ m.name }}</td><td>{{ m.message[:60] }}{% if m.message|length > 60 %}...{% endif %}</td></tr>
+          {% else %}
+          <tr><td colspan="2" class="empty-state">No messages yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

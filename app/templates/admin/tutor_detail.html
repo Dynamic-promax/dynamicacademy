@@ -1,0 +1,67 @@
+{% extends "admin/_layout.html" %}
+{% from "_macros.html" import field %}
+{% block admin_title %}Tutor: {{ application.full_name }}{% endblock %}
+{% block admin_content %}
+<a href="{{ url_for('admin.tutor_applications') }}" class="btn-ghost">&larr; Back to Tutor Applications</a>
+
+<div class="grid grid-2" style="margin-top: var(--space-md); align-items:start;">
+  <div>
+    <div class="detail-panel">
+      <h2 style="font-size: var(--text-md); margin-bottom: var(--space-sm);">Personal Information</h2>
+      <dl>
+        <div class="detail-row"><dt>Name</dt><dd>{{ application.full_name }}</dd></div>
+        <div class="detail-row"><dt>Email</dt><dd>{{ application.email }}</dd></div>
+        <div class="detail-row"><dt>Phone</dt><dd>{{ application.phone }}</dd></div>
+        <div class="detail-row"><dt>WhatsApp</dt><dd>{{ application.whatsapp_number or "-" }}</dd></div>
+        <div class="detail-row"><dt>Location</dt><dd>{{ application.location }}</dd></div>
+        <div class="detail-row"><dt>Gender</dt><dd>{{ application.gender or "-" }}</dd></div>
+      </dl>
+    </div>
+
+    <div class="detail-panel" style="margin-top: var(--space-md);">
+      <h2 style="font-size: var(--text-md); margin-bottom: var(--space-sm);">Professional Information</h2>
+      <dl>
+        <div class="detail-row"><dt>Qualification</dt><dd>{{ application.highest_qualification }}</dd></div>
+        <div class="detail-row"><dt>Field of Study</dt><dd>{{ application.field_of_study }}</dd></div>
+        <div class="detail-row"><dt>Experience</dt><dd>{{ application.years_of_experience }}</dd></div>
+        <div class="detail-row"><dt>Subjects/Courses</dt><dd>{{ application.subjects_courses }}</dd></div>
+        <div class="detail-row"><dt>Technology Skills</dt><dd>{{ application.technology_skills or "-" }}</dd></div>
+        <div class="detail-row"><dt>Programming Languages</dt><dd>{{ application.programming_languages or "-" }}</dd></div>
+        <div class="detail-row"><dt>Age Groups</dt><dd>{{ application.age_groups }}</dd></div>
+        <div class="detail-row"><dt>Preferred Mode</dt><dd>{{ application.preferred_mode }}</dd></div>
+        <div class="detail-row"><dt>Availability</dt><dd>{{ application.availability or "-" }}</dd></div>
+        <div class="detail-row"><dt>Expected Rate</dt><dd>{{ application.expected_rate or "-" }}</dd></div>
+      </dl>
+    </div>
+
+    <div class="detail-panel" style="margin-top: var(--space-md);">
+      <h2 style="font-size: var(--text-md); margin-bottom: var(--space-sm);">Experience &amp; Documents</h2>
+      <dl>
+        <div class="detail-row"><dt>Previous Institution</dt><dd>{{ application.previous_institution or "-" }}</dd></div>
+        <div class="detail-row"><dt>Certifications</dt><dd>{{ application.certifications or "-" }}</dd></div>
+        <div class="detail-row"><dt>Portfolio</dt><dd>{% if application.portfolio_url %}<a href="{{ application.portfolio_url }}" target="_blank" rel="noopener">{{ application.portfolio_url }}</a>{% else %}-{% endif %}</dd></div>
+        <div class="detail-row"><dt>LinkedIn</dt><dd>{% if application.linkedin_url %}<a href="{{ application.linkedin_url }}" target="_blank" rel="noopener">{{ application.linkedin_url }}</a>{% else %}-{% endif %}</dd></div>
+      </dl>
+      <div class="btn-group" style="margin-top: var(--space-sm);">
+        {% if application.cv_filename %}
+        <a href="{{ url_for('admin.download_tutor_document', application_id=application.id, doc_type='cv') }}" class="btn btn-outline btn-sm">Download CV</a>
+        {% endif %}
+        {% if application.certificate_filename %}
+        <a href="{{ url_for('admin.download_tutor_document', application_id=application.id, doc_type='certificate') }}" class="btn btn-outline btn-sm">Download Certificate</a>
+        {% endif %}
+      </div>
+      <p class="text-faint" style="font-size: var(--text-xs); margin-top: var(--space-sm);">Documents are stored securely and only accessible to logged-in admins.</p>
+    </div>
+  </div>
+
+  <div class="detail-panel">
+    <h2 style="font-size: var(--text-md); margin-bottom: var(--space-sm);">Update Status</h2>
+    <form method="POST" novalidate>
+      {{ form.hidden_tag() }}
+      {{ field(form.status) }}
+      {{ form.submit(class_="btn btn-primary btn-block") }}
+    </form>
+    <a href="{{ whatsapp_link(academy.whatsapp_number, 'Hello ' + application.full_name + ', this is Dynamic Academy regarding your tutor application ' + application.application_number + '.') }}" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block" style="margin-top: var(--space-sm);">Message on WhatsApp</a>
+  </div>
+</div>
+{% endblock %}

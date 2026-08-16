@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}{{ course.title }} Course | Dynamic Academy{% endblock %}
+{% block description %}{{ course.short_description }}{% endblock %}
+
+{% block content %}
+<section class="page-hero" style="text-align:left; padding-bottom: var(--space-lg);">
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="{{ url_for('main.home') }}">Home</a> /
+      <a href="{{ url_for('courses.course_list') }}">Courses</a> /
+      <span>{{ course.title }}</span>
+    </nav>
+    <div style="max-width: 640px;">
+      <span class="badge badge-light" style="margin-top: var(--space-md);">{{ course.category.replace('-', ' ')|title }}</span>
+      <h1 style="margin-top: var(--space-sm); text-align:left;">{{ course.title }}</h1>
+      <p style="text-align:left; margin: var(--space-sm) 0 0;">{{ course.short_description }}</p>
+      <div class="hero-actions" style="margin-top: var(--space-md);">
+        <a href="{{ url_for('courses.enroll_choice', slug=course.slug) }}" class="btn btn-gold">Enroll Now</a>
+        <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.course(course.title)) }}" class="btn btn-whatsapp" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="display:grid; gap: var(--space-xl); grid-template-columns: 1fr;">
+    <div style="display:grid; gap: var(--space-xl); grid-template-columns: 1fr;" class="course-detail-grid">
+      <div>
+        <img src="{{ url_for('static', filename='images/' ~ course.image) }}" alt="{{ course.title }}" style="width:100%; border-radius: var(--radius-lg); border:1px solid var(--color-border);">
+
+        <div style="margin-top: var(--space-xl);">
+          <h2 class="section-heading" style="font-size:var(--text-xl);">Overview</h2>
+          <p class="lead-text" style="margin-top: var(--space-sm);">{{ course.overview }}</p>
+          {% if course.who_its_for %}<p class="lead-text" style="margin-top: var(--space-sm);"><strong style="color:var(--color-navy-900);">Who it's for:</strong> {{ course.who_its_for }}</p>{% endif %}
+        </div>
+
+        {% if course.curriculum_list() %}
+        <div style="margin-top: var(--space-xl);">
+          <h2 class="section-heading" style="font-size:var(--text-xl);">Curriculum</h2>
+          <div class="grid grid-2" style="margin-top: var(--space-sm);">
+            {% for topic in course.curriculum_list() %}
+              <div class="value-card" style="padding: var(--space-sm) var(--space-md);"><strong>{{ topic }}</strong></div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if course.outcomes_list() %}
+        <div style="margin-top: var(--space-xl);">
+          <h2 class="section-heading" style="font-size:var(--text-xl);">Learning Outcomes</h2>
+          <ul class="chip-list" style="margin-top: var(--space-sm); flex-direction:column; gap:0.6rem;">
+            {% for outcome in course.outcomes_list() %}
+              <li style="display:flex; gap:0.5rem; align-items:flex-start;">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--color-royal-600); flex-shrink:0; margin-top:2px;" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                {{ outcome }}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+
+      <aside>
+        <div class="form-card" style="position:sticky; top: calc(var(--header-height) + 1rem);">
+          <p class="text-faint" style="font-size:var(--text-xs); text-transform:uppercase; letter-spacing:0.05em;">Course Fee</p>
+          <p style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight:700; color: var(--color-navy-900); margin-top:0.25rem;">{{ course.price }}</p>
+
+          <dl style="margin-top: var(--space-md); border-top:1px solid var(--color-border); padding-top: var(--space-md);">
+            <div class="detail-row"><dt>Age Range</dt><dd>{{ course.age_range }}</dd></div>
+            <div class="detail-row"><dt>Level</dt><dd>{{ course.level }}</dd></div>
+            <div class="detail-row"><dt>Duration</dt><dd>{{ course.duration }}</dd></div>
+            <div class="detail-row"><dt>Mode</dt><dd>{{ course.mode }}</dd></div>
+          </dl>
+
+          <div class="btn-group" style="flex-direction:column; margin-top: var(--space-md);">
+            <a href="{{ url_for('courses.enroll_choice', slug=course.slug) }}" class="btn btn-primary btn-block">Enroll Now</a>
+            <a href="{{ whatsapp_link(academy.whatsapp_number, whatsapp_messages.course(course.title)) }}" class="btn btn-whatsapp btn-block" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    {% if related %}
+    <div>
+      <h2 class="section-heading" style="font-size:var(--text-xl);">Related Courses</h2>
+      <div class="grid grid-3" style="margin-top: var(--space-md);">
+        {% for c in related %}
+          <a href="{{ url_for('courses.course_detail', slug=c.slug) }}" class="value-card">
+            <strong style="color:var(--color-navy-900);">{{ c.title }}</strong>
+            <p style="margin-top:0.4rem;">{{ c.short_description }}</p>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+@media (min-width: 900px) { .course-detail-grid { grid-template-columns: 1.6fr 1fr !important; } }
+</style>
+{% endblock %}

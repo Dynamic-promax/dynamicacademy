@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}File Too Large | Dynamic Academy{% endblock %}
+{% block content %}
+<section class="section" style="padding-top: var(--space-3xl); text-align:center;">
+  <div class="container" style="max-width: 480px;">
+    <h1>File Too Large</h1>
+    <p class="lead-text" style="margin-top: var(--space-sm);">The file you tried to upload is larger than our 8MB limit. Please compress it or choose a smaller file and try again.</p>
+    <a href="javascript:history.back()" class="btn btn-primary" style="margin-top: var(--space-md);">Go Back</a>
+  </div>
+</section>
+{% endblock %}
