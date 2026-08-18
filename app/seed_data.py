@@ -11,6 +11,24 @@ from app.models import Course, BlogPost
 
 COURSES = [
     # ---------------------- TECHNOLOGY ----------------------
+        dict(
+        slug="weekend-tech-club",
+        title="Weekend Tech Club",
+        category="technology",
+        image="programs/tech_club.jpg",
+        short_description="A live weekend technology club where kids and teens learn to create with technology.",
+        overview="Weekend Tech Club is a practical, interactive technology programme designed to help children and teenagers move from simply consuming technology to creating with it. Learners explore coding, artificial intelligence, web development, game development, digital problem solving and practical technology projects.",
+        who_its_for="Children and teenagers aged 8-19 who want to learn technology in a fun, practical and supportive environment.",
+        age_range="8-17 years",
+        level="Beginner",
+        duration="Monthly / Ongoing",
+        mode="Online",
+        price="₦20,000/month",
+        curriculum="Python Programming\nHTML\nJava\nArtificial Intelligence\nWeb Development\nGame Development\nApp Development\nScratch\nDigital Problem Solving\nPractical Technology Projects",
+        outcomes="Build confidence with technology\nCreate practical digital projects\nDevelop programming and problem-solving skills\nLearn how to use AI creatively and responsibly\nBuild a strong foundation for future technology careers",
+        is_featured=True
+    ),
+    
     dict(slug="python-programming", title="Python Programming", category="technology",
          image="courses/python.jpg",
          short_description="Learn to code with Python - the world's most beginner-friendly and in-demand programming language.",

@@ -43,6 +43,26 @@ class StudentRegistrationForm(FlaskForm):
     course = SelectField("Course", validators=[DataRequired(message="Please select a course.")], coerce=str)
     learning_mode = SelectField("Learning Mode", choices=LEARNING_MODE_CHOICES, validators=[DataRequired(message="Please select a learning mode.")])
     preferred_schedule = StringField("Preferred Class Schedule", validators=[Optional(), Length(max=150)])
+    schedule_day = SelectField(
+        "Weekend Tech Club Day",
+        choices=[
+            ("", "Choose a day"),
+            ("Saturday", "Saturday"),
+            ("Sunday", "Sunday"),
+        ],
+        validators=[Optional()],
+    )
+
+    schedule_time = SelectField(
+        "Weekend Tech Club Time",
+        choices=[
+            ("", "Choose a time"),
+            ("Saturday 12:00 PM - 2:00 PM", "12:00 PM - 2:00 PM"),
+            ("Sunday 4:00 PM - 6:00 PM", "4:00 PM - 6:00 PM"),
+            ("Sunday 6:00 PM - 8:00 PM", "6:00 PM - 8:00 PM"),
+        ],
+        validators=[Optional()],
+    )
     experience_level = TextAreaField("Previous Programming/Technology Experience", validators=[Optional(), Length(max=1000)])
     current_school = StringField("Current School/Institution", validators=[Optional(), Length(max=200)])
     referral_source = StringField("How did you hear about Dynamic Academy?", validators=[Optional(), Length(max=150)])
@@ -78,6 +98,26 @@ class ParentRegistrationForm(FlaskForm):
     course = SelectField("Course", validators=[DataRequired(message="Please select a course.")], coerce=str)
     learning_mode = SelectField("Learning Mode", choices=LEARNING_MODE_CHOICES, validators=[DataRequired(message="Please select a learning mode.")])
     preferred_schedule = StringField("Preferred Schedule", validators=[Optional(), Length(max=150)])
+    schedule_day = SelectField(
+        "Weekend Tech Club Day",
+        choices=[
+            ("", "Choose a day"),
+            ("Saturday", "Saturday"),
+            ("Sunday", "Sunday"),
+        ],
+        validators=[Optional()],
+    )
+
+    schedule_time = SelectField(
+        "Weekend Tech Club Time",
+        choices=[
+            ("", "Choose a time"),
+            ("Saturday 12:00 PM - 2:00 PM", "12:00 PM - 2:00 PM"),
+            ("Sunday 4:00 PM - 6:00 PM", "4:00 PM - 6:00 PM"),
+            ("Sunday 6:00 PM - 8:00 PM", "6:00 PM - 8:00 PM"),
+        ],
+        validators=[Optional()],
+    )
     experience_level = TextAreaField("Previous Experience", validators=[Optional(), Length(max=1000)])
     learning_goals = TextAreaField("Learning Goals", validators=[Optional(), Length(max=1000)])
     additional_info = TextAreaField("Additional Information", validators=[Optional(), Length(max=1000)])

@@ -213,3 +213,147 @@
     }
   }
 })();
+
+  /* ---- Weekend Tech Club smart day/time selector ---- */
+  document.querySelectorAll("select[name='course']").forEach(function (courseSelect) {
+    var form = courseSelect.closest("form");
+    if (!form) return;
+
+    var daySelect = form.querySelector("select[name='schedule_day']");
+    var timeSelect = form.querySelector("select[name='schedule_time']");
+
+    if (!daySelect || !timeSelect) return;
+
+    var scheduleBox = form.querySelector(
+      "[id^='weekend-tech-schedule-']"
+    );
+
+    var regularScheduleBox = form.querySelector(
+      "[id^='regular-schedule-']"
+    );
+
+    function updateWeekendTechSchedule() {
+      var isTechClub = courseSelect.value === "weekend-tech-club";
+
+      if (!isTechClub) {
+        if (scheduleBox) {
+          scheduleBox.style.display = "none";
+        }
+
+        if (regularScheduleBox) {
+          regularScheduleBox.style.display = "";
+        }
+
+        daySelect.value = "";
+        timeSelect.value = "";
+        return;
+      }
+
+      if (scheduleBox) {
+        scheduleBox.style.display = "";
+      }
+
+      if (regularScheduleBox) {
+        regularScheduleBox.style.display = "none";
+      }
+
+      updateTimeOptions();
+    }
+
+    function updateTimeOptions() {
+      var selectedDay = daySelect.value;
+
+      Array.from(timeSelect.options).forEach(function (option) {
+        if (option.value === "") {
+          option.hidden = false;
+          option.disabled = false;
+          return;
+        }
+
+        if (selectedDay === "Saturday") {
+          var isSaturday =
+            option.value === "Saturday 12:00 PM - 2:00 PM";
+
+          option.hidden = !isSaturday;
+          option.disabled = !isSaturday;
+        } else if (selectedDay === "Sunday") {
+          var isSunday =
+            option.value === "Sunday 4:00 PM - 6:00 PM" ||
+            option.value === "Sunday 6:00 PM - 8:00 PM";
+
+          option.hidden = !isSunday;
+          option.disabled = !isSunday;
+        } else {
+          option.hidden = true;
+          option.disabled = true;
+        }
+      });
+
+      if (selectedDay === "Saturday") {
+        timeSelect.value = "Saturday 12:00 PM - 2:00 PM";
+      } else if (
+        selectedDay === "Sunday" &&
+        timeSelect.value === "Saturday 12:00 PM - 2:00 PM"
+      ) {
+        timeSelect.value = "";
+      }
+    }
+
+    courseSelect.addEventListener("change", updateWeekendTechSchedule);
+    daySelect.addEventListener("change", updateTimeOptions);
+
+    updateWeekendTechSchedule();
+  });
+
+  /* =========================================
+   DARK / LIGHT MODE
+   ========================================= */
+
+(function () {
+    const themeToggle = document.getElementById("themeToggle");
+
+    if (!themeToggle) return;
+
+    const html = document.documentElement;
+
+    // Get saved theme
+    const savedTheme = localStorage.getItem("dynamicAcademyTheme");
+
+    // Apply saved theme
+    if (savedTheme === "dark") {
+        html.classList.add("dark-mode");
+    } else {
+        html.classList.remove("dark-mode");
+    }
+
+    // Update button icon
+    function updateThemeButton() {
+        const isDark = html.classList.contains("dark-mode");
+
+        themeToggle.textContent = isDark ? "☀️" : "🌙";
+
+        themeToggle.setAttribute(
+            "aria-label",
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+        );
+
+        themeToggle.setAttribute(
+            "title",
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+        );
+    }
+
+    updateThemeButton();
+
+    // Toggle theme
+    themeToggle.addEventListener("click", function () {
+        const isDark = html.classList.toggle("dark-mode");
+
+        localStorage.setItem(
+            "dynamicAcademyTheme",
+            isDark ? "dark" : "light"
+        );
+
+        updateThemeButton();
+    });
+})();

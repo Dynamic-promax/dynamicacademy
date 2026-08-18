@@ -19,6 +19,61 @@ from app.utils.helpers import generate_registration_number
 
 registration_bp = Blueprint("registration", __name__)
 
+TECH_CLUB_SLUG = "weekend-tech-club"
+
+SATURDAY_TIME = "Saturday 12:00 PM - 2:00 PM"
+
+SUNDAY_TIMES = {
+    "Sunday 4:00 PM - 6:00 PM",
+    "Sunday 6:00 PM - 8:00 PM",
+}
+
+
+def _get_preferred_schedule(form, course):
+    """
+    Return the schedule that should be saved to the database.
+
+    Weekend Tech Club has controlled day/time options.
+    Other courses continue using the normal preferred_schedule field.
+    """
+    if not course or course.slug != TECH_CLUB_SLUG:
+        return form.preferred_schedule.data
+
+    day = (form.schedule_day.data or "").strip()
+    selected_time = (form.schedule_time.data or "").strip()
+
+    if not day:
+        form.schedule_day.errors.append(
+            "Please choose Saturday or Sunday."
+        )
+        return None
+
+    if not selected_time:
+        form.schedule_time.errors.append(
+            "Please choose a class time."
+        )
+        return None
+
+    if day == "Saturday":
+        if selected_time != SATURDAY_TIME:
+            form.schedule_time.errors.append(
+                "Saturday is only available from 12:00 PM to 2:00 PM."
+            )
+            return None
+
+        return SATURDAY_TIME
+
+    if day == "Sunday":
+        if selected_time not in SUNDAY_TIMES:
+            form.schedule_time.errors.append(
+                "Please choose one of the available Sunday times."
+            )
+            return None
+
+        return selected_time
+
+    form.schedule_day.errors.append("Please choose a valid day.")
+    return None
 
 def _course_choices():
     """(value, label) pairs for course <select> fields, built fresh from the DB."""
@@ -39,6 +94,11 @@ def student_register():
     if form.validate_on_submit():
         course = Course.query.filter_by(slug=form.course.data).first()
 
+        preferred_schedule = _get_preferred_schedule(form, course)
+
+        if course and course.slug == TECH_CLUB_SLUG and preferred_schedule is None:
+            return render_template("student_register.html", form=form)
+
         count_so_far = Student.query.count()
         reg_number = generate_registration_number("STU", count_so_far)
 
@@ -54,7 +114,7 @@ def student_register():
             course_id=course.id if course else None,
             course_name_snapshot=course.title if course else form.course.data,
             learning_mode=form.learning_mode.data,
-            preferred_schedule=form.preferred_schedule.data,
+            preferred_schedule=preferred_schedule,
             experience_level=form.experience_level.data,
             current_school=form.current_school.data,
             referral_source=form.referral_source.data,
@@ -83,6 +143,11 @@ def parent_register():
 
     if form.validate_on_submit():
         course = Course.query.filter_by(slug=form.course.data).first()
+
+        preferred_schedule = _get_preferred_schedule(form, course)
+
+        if course and course.slug == TECH_CLUB_SLUG and preferred_schedule is None:
+            return render_template("parent_register.html", form=form)
 
         parent = ParentGuardian(
             full_name=form.parent_full_name.data.strip(),
@@ -113,7 +178,7 @@ def parent_register():
             course_id=course.id if course else None,
             course_name_snapshot=course.title if course else form.course.data,
             learning_mode=form.learning_mode.data,
-            preferred_schedule=form.preferred_schedule.data,
+            preferred_schedule=preferred_schedule,
             experience_level=form.experience_level.data,
             learning_goals=form.learning_goals.data,
             additional_info=form.additional_info.data,

@@ -46,7 +46,22 @@
         {{ field(form.course) }}
         {{ field(form.learning_mode) }}
       </div>
-      {{ field(form.preferred_schedule, placeholder="e.g. Weekday evenings, weekends...") }}
+      <div id="weekend-tech-schedule-parent" style="display:none;">
+  <div class="grid-form-2">
+    {{ field(form.schedule_day) }}
+    {{ field(form.schedule_time) }}
+  </div>
+
+  <p class="text-faint" style="margin-top:-0.5rem; margin-bottom:1rem;">
+    Weekend Tech Club: Saturday is 12:00 PM–2:00 PM.
+    Sunday is 4:00 PM–6:00 PM or 6:00 PM–8:00 PM.
+    Please choose one day and time.
+  </p>
+</div>
+
+<div id="regular-schedule-parent">
+  {{ field(form.preferred_schedule, placeholder="e.g. Weekday evenings, weekends...") }}
+</div>
       {{ field(form.experience_level) }}
       {{ field(form.learning_goals, hint="What would you like your child to gain from this course?") }}
       {{ field(form.additional_info) }}
