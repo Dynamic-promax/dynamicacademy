@@ -12,19 +12,20 @@
 
 <div class="table-wrap">
   <table class="data-table">
-    <thead><tr><th>App. No.</th><th>Name</th><th>Subjects</th><th>Experience</th><th>Status</th><th>Applied</th></tr></thead>
+    <thead><tr><th>App. No.</th><th>Name</th><th>Subjects</th><th>Experience</th><th>Status</th><th>Applied</th><th>Actions</th></tr></thead>
     <tbody>
       {% for t in applications %}
       <tr>
-        <td><a href="{{ url_for('admin.tutor_detail', application_id=t.id) }}">{{ t.application_number }}</a></td>
+        <td>{{ t.application_number }}</td>
         <td>{{ t.full_name }}</td>
         <td>{{ t.subjects_courses }}</td>
         <td>{{ t.years_of_experience }}</td>
         <td><span class="status-pill status-{{ t.status }}">{{ t.status }}</span></td>
         <td>{{ t.created_at.strftime('%d %b %Y') }}</td>
+        <td><a href="{{ url_for('admin.tutor_detail', application_id=t.id) }}" class="btn btn-primary btn-sm">View / Manage</a></td>
       </tr>
       {% else %}
-      <tr><td colspan="6" class="empty-state">No tutor applications found.</td></tr>
+      <tr><td colspan="7" class="empty-state">No tutor applications found.</td></tr>
       {% endfor %}
     </tbody>
   </table>

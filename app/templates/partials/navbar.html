@@ -1,7 +1,7 @@
 <header class="site-header">
   <div class="container nav-row">
     <a href="{{ url_for('main.home') }}" class="brand">
-      <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Dynamic Academy logo" class="brand-mark-img">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Dynamic Academy logo" class="brand-mark-img">
       <span class="brand-text">
         <span class="brand-name">Dynamic Academy</span>
         <span class="brand-motto">Think. Learn. Create. Lead.</span>
@@ -35,6 +35,15 @@
         <li><a href="{{ url_for('main.corporate') }}" {% if request.endpoint == 'main.corporate' %}aria-current="page"{% endif %}>Corporate</a></li>
         <li><a href="{{ url_for('main.tutors') }}" {% if request.endpoint == 'main.tutors' %}aria-current="page"{% endif %}>Tutors</a></li>
         <li><a href="{{ url_for('contact.contact') }}" {% if request.endpoint == 'contact.contact' %}aria-current="page"{% endif %}>Contact</a></li>
+        <button
+            type="button"
+            id="themeToggle"
+            class="theme-toggle"
+            aria-label="Toggle dark mode"
+            title="Toggle dark mode"
+        >
+            🌙
+        </button>
       </ul>
     </nav>
 

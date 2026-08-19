@@ -12,19 +12,20 @@
 
 <div class="table-wrap">
   <table class="data-table">
-    <thead><tr><th>Reg. No.</th><th>Child</th><th>Parent</th><th>Course</th><th>Status</th><th>Registered</th></tr></thead>
+    <thead><tr><th>Reg. No.</th><th>Child</th><th>Parent</th><th>Course</th><th>Status</th><th>Registered</th><th>Actions</th></tr></thead>
     <tbody>
       {% for c in children %}
       <tr>
-        <td><a href="{{ url_for('admin.parent_detail', child_id=c.id) }}">{{ c.registration_number }}</a></td>
+        <td>{{ c.registration_number }}</td>
         <td>{{ c.full_name }} ({{ c.age }})</td>
         <td>{{ c.parent.full_name }}</td>
         <td>{{ c.course_name_snapshot or "-" }}</td>
         <td><span class="status-pill status-{{ c.status }}">{{ c.status }}</span></td>
         <td>{{ c.created_at.strftime('%d %b %Y') }}</td>
+        <td><a href="{{ url_for('admin.parent_detail', child_id=c.id) }}" class="btn btn-primary btn-sm">View / Manage</a></td>
       </tr>
       {% else %}
-      <tr><td colspan="6" class="empty-state">No registrations found.</td></tr>
+      <tr><td colspan="7" class="empty-state">No registrations found.</td></tr>
       {% endfor %}
     </tbody>
   </table>

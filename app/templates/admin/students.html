@@ -12,20 +12,21 @@
 
 <div class="table-wrap">
   <table class="data-table">
-    <thead><tr><th>Reg. No.</th><th>Name</th><th>Course</th><th>Mode</th><th>Phone</th><th>Status</th><th>Registered</th></tr></thead>
+    <thead><tr><th>Reg. No.</th><th>Name</th><th>Course</th><th>Mode</th><th>Phone</th><th>Status</th><th>Registered</th><th>Actions</th></tr></thead>
     <tbody>
       {% for s in students %}
       <tr>
-        <td><a href="{{ url_for('admin.student_detail', student_id=s.id) }}">{{ s.registration_number }}</a></td>
+        <td>{{ s.registration_number }}</td>
         <td>{{ s.full_name }}</td>
         <td>{{ s.course_name_snapshot or "-" }}</td>
         <td>{{ s.learning_mode or "-" }}</td>
         <td>{{ s.phone }}</td>
         <td><span class="status-pill status-{{ s.status }}">{{ s.status }}</span></td>
         <td>{{ s.created_at.strftime('%d %b %Y') }}</td>
+        <td><a href="{{ url_for('admin.student_detail', student_id=s.id) }}" class="btn btn-primary btn-sm">View / Manage</a></td>
       </tr>
       {% else %}
-      <tr><td colspan="7" class="empty-state">No students found.</td></tr>
+      <tr><td colspan="8" class="empty-state">No students found.</td></tr>
       {% endfor %}
     </tbody>
   </table>

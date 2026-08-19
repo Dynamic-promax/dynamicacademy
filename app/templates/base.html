@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+      (function () {
+          const savedTheme = localStorage.getItem("dynamicAcademyTheme");
+
+          if (savedTheme === "dark") {
+              document.documentElement.classList.add("dark-mode");
+          }
+      })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Dynamic Academy | Technology, AI &amp; Academic Learning{% endblock %}</title>
@@ -8,9 +17,9 @@
   <meta property="og:title" content="{% block og_title %}Dynamic Academy | Think. Learn. Create. Lead.{% endblock %}">
   <meta property="og:description" content="{% block og_description %}Practical education for the next generation of creators, problem-solvers and technology leaders.{% endblock %}">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="{{ url_for('static', filename='images/logo.svg', _external=True) }}">
+  <meta property="og:image" content="{{ url_for('static', filename='images/logo.png', _external=True) }}">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="{{ url_for('static', filename='images/logo.svg') }}" type="image/svg+xml">
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/svg+xml">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/tokens.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
   {% block extra_head %}{% endblock %}
