@@ -114,8 +114,13 @@ def parent_detail(child_id):
         db.session.commit()
         flash(f"Status updated to '{child.status}'.", "success")
         return redirect(url_for("admin.parent_detail", child_id=child.id))
-    return render_template("admin/parent_detail.html", child=child, parent=child.parent, form=form)
-
+    whatsapp_note = (
+        f"Hello {child.parent.full_name}, this is Dynamic Academy regarding "
+        f"{child.full_name}'s registration {child.registration_number}."
+    )
+    return render_template(
+        "admin/parent_detail.html", child=child, parent=child.parent, form=form, whatsapp_note=whatsapp_note
+    )
 
 # ---------------------------------------------------------------------------
 # TUTOR APPLICATIONS

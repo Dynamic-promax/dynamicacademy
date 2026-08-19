@@ -44,7 +44,7 @@
       {{ field(form.status) }}
       {{ form.submit(class_="btn btn-primary btn-block") }}
     </form>
-    <a href="{{ whatsapp_link(academy.whatsapp_number, 'Hello ' + parent.full_name + ', this is Dynamic Academy regarding ' + child.full_name + \"'s registration \" + child.registration_number + '.') }}" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block" style="margin-top: var(--space-sm);">Message Parent on WhatsApp</a>
+        <a href="{{ whatsapp_link(academy.whatsapp_number, 'Hello ' + parent.full_name + ', this is Dynamic Academy regarding ' + child.full_name + \"'s registration \" + child.registration_number + '.') }}" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block" style="margin-top: var(--space-sm);">Message Parent on WhatsApp</a>
   </div>
 </div>
 {% endblock %}
